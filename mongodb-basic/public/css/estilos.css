@@ -1,0 +1,20 @@
+.page-footer{
+    position:fixed !important;
+    bottom:0;
+    left:0;
+    width:100%;
+    background-color: #525459 !important;
+    color: white;
+  }
+  .container.foot {
+    margin: auto;
+    bottom: 50%;
+  }
+  .icon-foot {
+    padding: 0 10px 0 3px;  
+  }
+  
+  .foot-div {
+   font-size: 20px;
+   text-align: right;
+  }
