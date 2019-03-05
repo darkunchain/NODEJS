@@ -11,14 +11,13 @@ app.set('views', path.join(raiz,'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-
-
 //routes
 app.use(require('./routes/index.js'));
 
 //static files
 
-app.use(express.static(path.join(raiz, 'public')))
+app.use(express.static(path.join(raiz, 'public')));
+
 
 //listening
 app.listen(app.get('port'), () => {
