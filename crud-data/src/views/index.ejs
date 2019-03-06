@@ -1,0 +1,63 @@
+<% include partials/_header %>
+
+<div class="container">
+
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <form action="/add" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="x" placeholder="Valor X">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="y" placeholder="Valor Y">
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-5">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Valor X</th>
+            <th>Valor Y</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < coords.length; i++) { %>
+          <tr>
+            <td><%= i + 1%></td>
+            <td><strong><%= coords[i].x %></strong></td>
+            <td><%= coords[i].y %></td>
+            <td>             
+              <a href="/delete/<%= coords[i]._id %>" class="btn btn-danger">
+                Delete
+              </a>
+              <a href="/edit/<%= coords[i]._id %>" class="btn btn-info">
+                Edit
+              </a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="col-md-5">
+<h1>Espacio para la grafica</h1>
+
+    </div>
+  </div>
+
+</div>
