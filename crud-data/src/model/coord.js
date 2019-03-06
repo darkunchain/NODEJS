@@ -6,4 +6,5 @@ const coord = Schema({
   y: String  
 });
 
-module.exports = mongoose.model('tasks', coord);
+//module.exports = mongoose.model('tasks', coord);
+module.exports = mongoose.model('coords', coord);
