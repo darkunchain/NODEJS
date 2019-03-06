@@ -24,7 +24,7 @@ router.get('/edit/:id', async (req, res, next) => {
 
 router.post('/edit/:id', async (req, res, next) => {
   const { id } = req.params;
-  await coord.update({_id: id}, req.body);
+  await Coord.update({_id: id}, req.body);
   res.redirect('/');
 });
 
