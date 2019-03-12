@@ -23,7 +23,7 @@
     </div>
 
     <!-- LIST -->
-    <div class="col-md-5">
+    <div class="col-md-4">
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -33,31 +33,33 @@
             <th>Operations</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>          
           <% for(var i=0; i < coords.length; i++) { %>
           <tr>
             <td><%= i + 1%></td>
-            <td><strong><%= coords[i].x %></strong></td>
-            <td><%= coords[i].y %></td>
+            <td><strong id="labels"><%= coords[i].x %></strong></td>                        
+            <td id="datas"><%= coords[i].y %></td>                       
             <td>             
-              <a href="/delete/<%= coords[i]._id %>" class="btn btn-danger">
+              <a href="/delete/<%= coords[i]._id %>" class="btn btn-danger btn-sm">
                 Delete
               </a>
-              <a href="/edit/<%= coords[i]._id %>" class="btn btn-info">
+              <a href="/edit/<%= coords[i]._id %>" class="btn btn-info btn-sm">
                 Edit
               </a>
             </td>
           </tr>
-          <% } %>
+          <% } %>                
         </tbody>
+      
       </table>
 
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-6">
       <h1>Grafica de barras</h1>
-      <canvas id="myChart" width="400" height="400"></canvas>      
-        <% include graficas/barras %>     
+      <canvas id="myChart" width="800" height="800"></canvas>            
+      <% include graficas/barras %>
+      
     </div>
   </div>
 

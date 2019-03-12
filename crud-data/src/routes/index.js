@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Coord = require('../model/coord');
 
+
 router.get('/', async (req, res) => {
-  const coords = await Coord.find();
-  res.render('index', {
-    coords
-  });
+  const coords = await Coord.find();  
+  res.render('index', {coords});   
 });
+
 
 router.post('/add', async (req, res, next) => {
   const coord = new Coord(req.body);
