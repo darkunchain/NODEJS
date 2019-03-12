@@ -2,16 +2,14 @@
         
         var ctx = document.getElementById("myChart").getContext('2d');   
         var datax = [];
-        var datay = [];
-           
+        var datay = [];          
         
-        var size = '<%= coords.length %>';              
+        var size = '<%= coords.length %>';
+        JSON.parse("<%= coords %>");     
         for (var i=0; i < size; i++) {        
-        i + 1;
-        var temp = "<%= coords[1] %>";
-        console.log(temp);
-        datax.push("<%= coords[i].x %>");
-        datay.push("<%= coords[i].y %>"); 
+        i + 1;        
+        datax.push("<%= coords[i] %>");
+        datay.push("<%= coords[i] %>"); 
         console.log(datax);
         console.log(datay);
         
