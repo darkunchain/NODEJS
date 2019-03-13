@@ -12,14 +12,15 @@
 </head>
 <body>
     <h1>Chat SocketIO</h1>
-    <div id="chat-container"></div>
-    <div id="chat-window"></div>
-    <div id="output"></div>
-    <div id="actions"></div>
-
-    <input type="text" id="usuario" placeholder="Escriba su nombre">
-    <input type="text" id="mensaje" placeholder="Escriba el mensaje">
-    <button type="submit" id="send">Enviar</button>
+    <div id="chat-container">
+        <div id="chat-window">
+            <div id="output"></div>
+            <div id="actions"></div>
+        </div>
+        <input type="text" id="usuario" placeholder="Escriba su nombre">
+        <input type="text" id="mensaje" placeholder="Escriba el mensaje">
+        <button type="submit" id="send">Enviar</button>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/app.js"></script>

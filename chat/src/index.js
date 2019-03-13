@@ -20,5 +20,13 @@ const io = SocketIO(server);
 
 //websockets
 io.on('connection', (socket) => {
-console.log('nueva conexion establecida', socket.id);
+    console.log('nueva conexion establecida', socket.id);
+
+    socket.on('chat:usuario', (data) => {
+        io.sockets.emit('chat:servidor', data);
+    });
+
+    socket.on('chat:usuario_escribiendo', (data) => {
+        socket.broadcast.emit('chat:servidor_escribiendo', data);
+    });
 });
