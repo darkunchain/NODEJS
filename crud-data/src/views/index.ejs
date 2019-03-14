@@ -33,13 +33,13 @@
             <th>Operations</th>
           </tr>
         </thead>
-        <tbody>          
+        <tbody>
           <% for(var i=0; i < coords.length; i++) { %>
           <tr>
             <td><%= i + 1%></td>
-            <td><strong id="labels"><%= coords[i].x %></strong></td>                        
-            <td id="datas"><%= coords[i].y %></td>                       
-            <td>             
+            <td><strong id="labels"><%= coords[i].x %></strong></td>
+            <td id="datas"><%= coords[i].y %></td>
+            <td>
               <a href="/delete/<%= coords[i]._id %>" class="btn btn-danger btn-sm">
                 Delete
               </a>
@@ -48,19 +48,21 @@
               </a>
             </td>
           </tr>
-          <% } %>                
-        </tbody>     
+          <% } %>
+        </tbody>
         
       </table>
-
+      
     </div>
 
     <div class="col-md-6">
       <h1>Grafica de barras</h1>
-      <canvas id="myChart" width="800" height="800"></canvas>            
-      <% include graficas/barras %>
-      
+      <canvas id="bars" width="800" height="800"></canvas>
+
+
     </div>
   </div>
 
 </div>
+
+<script src="js/graficas.js"></script>

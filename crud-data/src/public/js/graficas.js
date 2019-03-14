@@ -1,17 +1,16 @@
-<script>          
-        
-        var ctx = document.getElementById("myChart").getContext('2d');   
+
+
+var canvas = document.getElementById("bars");
+var ctx = canvas.getContext('2d');
         var datax = [];
         var datay = [];          
         
-        var size = '<%= coords.length %>';
-        JSON.parse("<%= coords %>");     
+        const size = coordenadas.length;  
+        console.log(size);         
         for (var i=0; i < size; i++) {        
         i + 1;        
-        datax.push("<%= coords[i] %>");
-        datay.push("<%= coords[i] %>"); 
-        console.log(datax);
-        console.log(datay);
+        //datax.push("<%= coords[i] %>");
+        //datay.push("<%= coords[i] %>");      
         
         };
 
@@ -51,5 +50,3 @@
                 }
             }
         });
-        
-        </script>
