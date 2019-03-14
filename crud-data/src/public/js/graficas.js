@@ -1,18 +1,24 @@
-
-
+var coordenadas = [];
+var j = [];
+  for(var i in "<%= coords %>"){
+    j.push(i);
+    coordenadas.push
+  }
+  console.log(j);
 var canvas = document.getElementById("bars");
 var ctx = canvas.getContext('2d');
         var datax = [];
-        var datay = [];          
-        
-        const size = coordenadas.length;  
-        console.log(size);         
-        for (var i=0; i < size; i++) {        
-        i + 1;        
-        //datax.push("<%= coords[i] %>");
-        //datay.push("<%= coords[i] %>");      
+        var datay = [];        
+        const size = j.length;  
+        console.log('size',size);         
+        for (var j in size) {    
+        console.log('j',j);     
+        datax.push("<%= coords[j].x %>");
+        datay.push("<%= coords[j].y %>");      
         
         };
+
+        console.log('valor de datax',datax);
 
         var myChart = new Chart(ctx, {            
             type: 'bar',

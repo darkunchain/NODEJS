@@ -3,8 +3,19 @@ const router = express.Router();
 const Coord = require('../model/coord');
 
 router.get('/', async (req, res) => {
-  const coords = await Coord.find();  
-  res.render('index', {coords});  
+  const coords = await Coord.find();
+  let coordsx =[];
+  let coordsy =[];
+  for(let i in coords){    
+    coordsx.push(coords[i].x);
+    coordsy.push(coords[i].y);
+  };
+  
+  console.log('coordsx', coordsx); 
+  console.log('coordsy', coordsy); 
+
+  res.render('index', {coords, coordsx, coordsy 
+  });  
 });
 
 //console.log(coords);
