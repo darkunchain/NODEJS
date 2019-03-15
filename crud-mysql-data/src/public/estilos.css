@@ -1,0 +1,24 @@
+.btn {
+    font-size: 0.6rem !important;
+}
+.table{ 
+    font-size: 0.7rem !important;
+}
+th{ 
+    font-size: 0.7rem !important;
+    padding: 5px 5px 5px 5px !important;
+    text-align: center;
+}
+
+td{ 
+    font-size: 0.7rem !important;
+    padding: 5px 5px 5px 5px !important;
+    
+}
+.container {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+.form-control {
+    font-size: 0.8rem !important;
+}
