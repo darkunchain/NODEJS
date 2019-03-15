@@ -6,8 +6,13 @@ controller.list = (req, res) => {
      if (err) {
       res.json(err);
      }
+     var coordsx = Datos.map(function (item) {
+      return item.label;
+    });
+     //console.log(coordsx);
      res.render('datos', {
-        data: Datos
+        data: Datos,
+        datax: coordsx
      });
     });
   });

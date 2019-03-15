@@ -33,19 +33,31 @@
           <% for(var i = 0; i < data.length; i++) { %>
           <tr>
             <td><%= (i + 1) %></td>
-            <td><%= data[i].label %></td>
-            <td><%= data[i].valor %></td>
+            <td id="label<%= i %>"><%= data[i].label %></td>
+            <td id="valor<%= i %>"><%= data[i].valor %></td>
             <td>
               <a href="/update/<%= data[i].id %>" class="btn btn-info btn-sm">Edit</a>
               <a href="/delete/<%= data[i].id %>" class="btn btn-danger btn-sm">Delete</a>
             </td>
           </tr>
+          <% } %>         
+          
           <% } %>
-          <% } %>
+          <td>
+              Total : 
+          </td>
+          <td id="total">
+              <%= i %>
+          </td>
         </tbody>
       </table>
     </div>
-
+    <div class="col-md-6">
+        <h1>Grafica de barras</h1>
+        <canvas id="bars" width="800" height="800"></canvas>
+        <script src="graficas.js"></script>
+        
+      </div>
   </div>
 </div>
 
