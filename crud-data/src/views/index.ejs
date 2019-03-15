@@ -62,21 +62,20 @@
 
     </div>
   </div>
-
+  <div id="datos">
+  <%= labels = coordsy %>
+  <%= console.log(labels) %>
+  
+</div>
 </div>
 
 <script>
-size = "<%= coordsy.length %>";
-var labels = "<%= coordsx %>";
-console.log('size', size);
-for(var i = 0; i < size; i++){
-  labels[i]="<%= coordsx[i] %>";
-};
-var labels = ["<%= coordsx %>"];
-var datas = ["<%= coordsy %>"];
-console.log('labels', labels);
-console.log('datas', datas); 
-  
+size = `<%= coords.length %>`;
+// var labels = `<%= coordsx %>`;
+// var datas = `<%= coordsy %>`;
+var datos = document.getElementById(datos);
+console.log(datos);
+
 var canvas = document.getElementById("bars");
 var ctx = canvas.getContext('2d');
         var datax = [];
@@ -85,10 +84,21 @@ var ctx = canvas.getContext('2d');
         var myChart = new Chart(ctx, {            
             type: 'bar',
             data: {
-                labels: labels,
+                labels: ['Enero',
+                'Febrero',
+                'Marzo',
+                'Abril',
+                'Mayo',
+                'Junio',
+                'Julio',
+                'Agosto',
+                'Septiembre',
+                'Octubre',
+                'Noviembre',
+                'Diciembre'],
                 datasets: [{
                     label: 'Valor de x cotra y',
-                    data: datas,
+                    data: [ '50', '70', '30', '60', '45', '65', '75', '55', '40', '48', '62', '43' ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
