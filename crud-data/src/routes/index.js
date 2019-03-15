@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
     return item.y;
   }); 
 
+  
+
   res.render('index', {coords, coordsx, coordsy}
   );
 });
