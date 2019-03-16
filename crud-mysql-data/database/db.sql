@@ -17,4 +17,6 @@ show tables;
 -- to describe table
 describe datos;
 
+ALTER TABLE datos
+ADD COLUMN valor1 VARCHAR(10) NOT NULL AFTER valor;
 
