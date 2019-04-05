@@ -1,0 +1,20 @@
+{
+  "name": "sql-server-connection",
+  "version": "1.0.0",
+  "description": "Conexion a SQL-Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src"
+  },
+  "author": "Luis Fernando Prieto",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mssql": "^5.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}

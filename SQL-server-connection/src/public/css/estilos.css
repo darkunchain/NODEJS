@@ -1,0 +1,3 @@
+table.striped > tbody > tr:nth-child(odd) { 
+    background-color: rgba(73, 163, 247, 1);   
+  }
