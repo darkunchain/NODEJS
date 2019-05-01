@@ -3,8 +3,9 @@ const router = express.Router();
 const nslookup = require('nslookup');
 const dnsEqual = require('dns-equal');
 
+
 var timer;
-var nsl = [];
+var nsl = [{ sitio: 'w3.registraduria.gov.co', ip: [] }];
 var serverDNS = '200.13.249.101';
 var sitios = [
   'escuelavirtual.registraduria.gov.co',
@@ -25,17 +26,14 @@ router.get('/', (req, res) => {
   timer = setInterval(function () {    
     sitios.forEach(function (item) { 
     nslookup(item)
-    .server(serverDNS)        
-    .end(function (err, addrs){
-      var datos = {sitio1:'wsp',ip1: addrs};
-      nsl.push(datos);        
+    .server(serverDNS)           
+    .end(function (err, addrs){      
+      console.log('ip: ', addrs);
+      //var datos = {sitio: item,ip: addrs};
+      //nsl.push(datos);        
     });
-    console.log('item: ', item);
-  });
     
-
-      
-    
+  });   
   }, 5000);  
   res.render('index');
 });
