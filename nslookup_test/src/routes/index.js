@@ -5,7 +5,7 @@ const dnsEqual = require('dns-equal');
 
 
 var timer;
-var nsl = [{ sitio: 'w3.registraduria.gov.co', ip: [] }];
+var nsl = [{}];
 var serverDNS = '200.13.249.101';
 var sitios = [
   'escuelavirtual.registraduria.gov.co',
@@ -23,18 +23,21 @@ var sitios = [
 ];
 
 router.get('/', (req, res) => {
-  timer = setInterval(function () {    
-    sitios.forEach(function (item) { 
-    nslookup(item)
-    .server(serverDNS)           
-    .end(function (err, addrs){      
-      console.log('ip: ', addrs);
-      //var datos = {sitio: item,ip: addrs};
-      //nsl.push(datos);        
-    });
-    
-  });   
-  }, 5000);  
+  // timer = setInterval(function () {    
+  //   sitios.forEach(function (item) { 
+  //   nslookup(item)
+  //   .server(serverDNS)           
+  //   .end(function (err, addrs){     
+  //     var datos = {sitio: item,ip: addrs};
+  //     //console.log('datos: ', datos);
+  //     nsl.push(datos);
+  //   });     
+  // });
+  // console.log('nsl: ', nsl);
+  // res.send(nsl);
+  // nsl = [];
+  // }, 5000);
+  
   res.render('index');
 });
 
