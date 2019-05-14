@@ -97,20 +97,48 @@
             
         </div>
         <div class="row teal lighten-2">Log de eventos</div>
-        <div class="row green lighten-2">
-            <div class="col s4">
-                Fecha
-            </div>
-            <div class="col s4">
-                Sitio
-            </div>
-            <div class="col s4">
-                Direccion IP
-            </div>    
-        </div>
-        <div class="row white-text red lighten-1" id="logfila">
+        
 
-        </div>
+        <div class="col-md-7">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>fecha</th>
+                      <th>Sitio</th>
+                      <th>IP</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(var i=0; i < logg.length; i++) { %>
+                      <tr>
+                        <td><%= logg[i].fecha %></td>
+                        <td><strong><%= logg[i].sitio %></strong></td>
+                        <td><%= logg[i].ip %></td>
+                        <td>
+                          <a
+                            class="<%= logg[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                            href="/turn/<%= logg[i]._id %>">Done</a>
+                          <a href="/delete/<%= logg[i]._id %>"
+                            class="btn btn-danger">
+                            Delete
+                          </a>
+                          <a href="/edit/<%= logg[i]._id %>" class="btn btn-info">
+                            Edit
+                          </a>
+                        </td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+          
+              </div>
+
+
+
+
+
+
+
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
