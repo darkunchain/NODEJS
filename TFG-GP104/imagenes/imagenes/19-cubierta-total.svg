@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="cubierta-total.svg">
+   sodipodi:docname="19-cubierta-total.svg">
   <defs
      id="defs2">
     <clipPath
@@ -25,6 +25,17 @@
       <rect
          style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.26199761"
          id="rect836"
+         width="61.402721"
+         height="36.644409"
+         x="-302.81305"
+         y="70.226616" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath834-5">
+      <rect
+         style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.26199761"
+         id="rect836-0"
          width="61.402721"
          height="36.644409"
          x="-302.81305"
@@ -39,10 +50,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="77.040209"
-     inkscape:cy="43.831325"
+     inkscape:cx="136.90191"
+     inkscape:cy="104.44048"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="715"
@@ -62,11 +73,11 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Capa 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(302.67941,-47.42476)">
+     id="layer3"
+     inkscape:label="Capa 3">
     <image
+       style="display:inline"
        y="70.226372"
        x="-315.69333"
        id="image823"
@@ -74,13 +85,7 @@
        preserveAspectRatio="none"
        height="36.487312"
        width="86.61676"
-       clip-path="url(#clipPath834)"
-       transform="matrix(1.6285923,0,0,1.6285923,190.47959,-66.945766)" />
+       clip-path="url(#clipPath834-5)"
+       transform="matrix(1.6285923,0,0,1.6285923,493.159,-114.37053)" />
   </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="Capa 2"
-     style="opacity:0.372"
-     transform="translate(302.67941,-47.42476)" />
 </svg>
