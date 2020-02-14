@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const xlsxtojson = require('xlsx-to-json');
 const xlstojson = require('xls-to-json');
+const fileUpload = require('express-fileupload');
 
 
 const app = express();
@@ -21,6 +22,7 @@ const indexRoutes = require('./routes');
 app.set('port', process.env.PORT || 8090);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(fileUpload());
 app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
