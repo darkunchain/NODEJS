@@ -1,0 +1,45 @@
+<%- include ('partials/_header'); -%>
+
+<div class="row">
+  <div class="col-md-3 col-lg-3 col-xl-3">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            <h4 class="text-center"><b> Ver archivos</b></h4>
+          </div>
+          <a href="./json" class="btn btn-dark block">Inicio</a>
+          
+        </div>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-8 col-lg-8 col-xl-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de archivo</th>
+          <th>Fecha</th>
+          <th>Categoria</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>        
+        <% for(var item in lista){%>
+        <tr>
+          <td><%= item %></td>
+          <td><%= lista[item].nombre %></td>
+          <td><%= lista[item].fecha %></td>
+          <td><%= lista[item].categoria %></td>
+          <td><button class="btn btn-secondary">usar</button></td>
+          <td><button class="btn btn-danger">eliminar</button></td>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include ('partials/_footer'); -%>

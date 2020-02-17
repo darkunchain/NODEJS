@@ -11,12 +11,13 @@ const fileUpload = require('express-fileupload');
 const app = express();
 
 // connection to db
-mongoose.connect('mongodb://localhost/MDA')
-  .then(db => console.log('db connected'))
+mongoose.connect('mongodb://localhost/MDA', { useNewUrlParser: true, useUnifiedTopology: true})
+  .then(db => console.log('Conectado a la base de datos MongoDB'))
   .catch(err => console.log(err));
 
 // importing routes
-const indexRoutes = require('./routes');
+const indexRoutes = require('./routes/indexRoutes');
+const jsonRoutes = require('./routes/jsonRoutes');
 
 // settings
 app.set('port', process.env.PORT || 8090);
@@ -36,7 +37,10 @@ app.use(function(req, res, next){
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}))
 // routes
+
 app.use('/', indexRoutes);
+app.use(require('./routes/mongoRoutes'))
+app.use('/json', jsonRoutes);
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
