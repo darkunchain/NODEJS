@@ -7,10 +7,11 @@ const fs = require('fs')
 
 
 router.get('/nuevo', async (req, res) => {
-    var ruta = './src/archivos/Requerimientos enero.xlsx.json';
-    leeArchivo(ruta);
+    var { idcat , file} = req.query
+    var ruta = './src/archivos/'+file+'.json';
+    leeArchivo(ruta,idcat);
 
-    function leeArchivo(file)  {  
+    function leeArchivo(file,idcat)  {  
         fs.readFile(file, 'utf8', async function (err, data) {
             if (err)
                 throw err;
@@ -19,8 +20,16 @@ router.get('/nuevo', async (req, res) => {
             }
             catch (e) {
                 console.error(e);
-            }            
-            const IncidenteNewFile =  new IncidenteNuevo({'nombre':'Requerimientos_Enero', 'contenido': obj, 'categoria':'Requerimientos'})
+            }
+            var categoria = ''
+            if(idcat=1){
+                categoria = 'IM'
+            }else if (idcat=2){
+                categoria = 'Incidentes'
+            }else {
+                categoria = 'Requerimientos'
+            }           
+            const IncidenteNewFile =  new IncidenteNuevo({'nombre':'TicketIM_Enero', 'contenido': obj, 'categoria':categoria})
             await IncidenteNewFile.save();
         });                    
       };   

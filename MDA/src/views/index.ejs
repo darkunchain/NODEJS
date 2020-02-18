@@ -10,11 +10,13 @@
             <h4 class="text-center"><b> Carga de archivos</b></h4>
           </div>
           <% for (var i=0; i < 3; i++) {%>
-          <form ref='uploadForm' id='uploadForm<%= i+1 %>' action='/upload/<%=i+1%>/file<%= i+1 %>' method='POST' encType="multipart/form-data">            
+          <form ref="uploadForm" id="uploadForm<%= i+1 %>" action="/upload" method="POST" encType="multipart/form-data">            
             <div class="form-group">
               <h5>Cargar archivo <%= nameCarga[i] %></h5>
-              <input class="form-control" type="file" name='file<%= i+1 %>' />
-              <input class="form-control btn btn-primary" type='submit' value='Upload!' />
+              <input type="text" name="idcarga" value="<%=i+1%>" class="sr-only">              
+              <input class="form-control" type="file" name="file" />
+              <input type="text" name="fileName" placeholder="Digite un nombre de archivo" class="form-control">
+              <input class="form-control btn btn-primary" type="submit" value="Upload!" />
             </div>
           </form>
           <% }; %>

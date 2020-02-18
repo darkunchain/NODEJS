@@ -5,6 +5,7 @@ const xlstojson = require('xls-to-json');
 const multer = require('multer');
 const upload = multer({ dest: './archivos/' });
 const IncidenteNuevo = require ('../model')
+const url = require('url');
 
 
 ////////////// Index Route  //////////////////
@@ -21,17 +22,24 @@ router.post('/', (req, res) => {
 
 ////////////// xlsxtojson Route  //////////////////
 router.get('/xlsxtojson', (req, res) => {
-  console.log('req.query: ', req.query.file)
-  var nombre=req.query.file;
+  console.log('req.query: ', req.query)
+  var { id,file }= req.query;    
   xlsxtojson({
-    input: './src/archivos/' + nombre,
-    output: './src/archivos/'+ nombre + '.json',
+    input: './src/archivos/' + file,
+    output: './src/archivos/'+ file + '.json',
     LowerCaseHeaders: true
   }, (err, result) => {
     if(err) {
       res.json(err);
     }else {
-      res.redirect('/');
+      res.redirect(url.format({
+        pathname:"/xlsxtojson/",
+        query: {
+           "idcat": id,         
+           "file": file
+         }
+      })
+      );;
     }
   });
 });
@@ -43,28 +51,32 @@ router.get('/upload', function(req, res) {
   
 });
 
-router.post('/upload/:idcarga/:nameForm', upload.single('nameForm'),async function(req, res) {
+router.post('/upload', upload.single('file'), async function(req, res) {
   
-  const {idcarga} = req.params;
-  const { nameForm } = req.params;
-  const archivo = req.files;
+  //const { idcarga, fileName} = req.params;
+  const sampleFile = req.files.file;
+  console.log('req.query: ',req.query,'req.params: ',req.params,'req.body: ',req.body)
+  
   
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
-  }
+  }     
   
-  console.log('nameForm: ',nameForm)  
-  //let sampleFile = req.files.nameForm;
-  let sampleFile = req.files.file1;
-  console.log('samplefile: ',sampleFile)  
-  await sampleFile.mv('./src/archivos/'+sampleFile.name, function(err) {
+  //console.log('samplefile: ',sampleFile)  
+  sampleFile.mv('./src/archivos/'+sampleFile.name, function(err) {
     if (err)
       return res.status(500).send(err);
     console.log('File uploaded!');        
-    res.redirect('/xlsxtojson/?file=' + sampleFile.name)    
+    res.redirect(url.format({
+      pathname:"/xlsxtojson1/",
+      query: {
+         "id": idcarga,         
+         "file": sampleFile.name
+       }
+    })
+    );
   });
 });
-
 
 
 

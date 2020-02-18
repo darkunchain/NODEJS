@@ -8,6 +8,7 @@ const xlstojson = require('xls-to-json');
 const fileUpload = require('express-fileupload');
 
 
+
 const app = express();
 
 // connection to db
@@ -24,18 +25,18 @@ app.set('port', process.env.PORT || 8090);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(fileUpload());
-app.use(function(req, res, next){
+/* app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
   res.header('Access-Control-Max-Age', '3600');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requests');
   next();
-});
+}); */
 
 
 // middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 // routes
 
 app.use('/', indexRoutes);
