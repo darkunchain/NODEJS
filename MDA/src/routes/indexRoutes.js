@@ -54,11 +54,13 @@ router.get('/xlsxtojson/', async (req, res) => {
           categoria = 'Incidentes'
           const IncidenteNewFile = new IncidenteNuevo({ 'nombre': fileName, 'contenido': result, categoria })
           await IncidenteNewFile.save();
+          console.timeEnd('leerArchivo: ')
         } else {
           console.log('idCarga 3')
           categoria = 'Requerimientos'
           const RequerimientoNewFile = new RequerimientoNuevo({ 'nombre': fileName, 'contenido': result, categoria })
           await RequerimientoNewFile.save();
+          console.timeEnd('leerArchivo: ')
         }        
         res.redirect('/')
       }
