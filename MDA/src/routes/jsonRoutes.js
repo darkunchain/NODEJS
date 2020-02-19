@@ -2,11 +2,11 @@
 // la ruta / corresponde a /json/
 const express = require('express');
 const router = express.Router();
-const IncidenteNuevo = require ('../model')
+const IncidenteNuevo = require ('../models/IMModel')
 const fs = require('fs')
 
 var obj
-fs.readFile('./src/archivos/incidentes.xlsx.json', 'utf8', function (err, data) {
+fs.readFile('./src/archivos/pruebas1.json', 'utf8', function (err, data) {
     if (err)
         throw err;
     try {            

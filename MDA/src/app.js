@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const xlsxtojson = require('xlsx-to-json');
 const xlstojson = require('xls-to-json');
 const fileUpload = require('express-fileupload');
-
+const bodyParser = require('body-parser')
 
 
 const app = express();
@@ -37,6 +37,7 @@ app.use(fileUpload());
 // middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.json())
 // routes
 
 app.use('/', indexRoutes);

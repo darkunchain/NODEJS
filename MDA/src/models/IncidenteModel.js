@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const IncidenteSchema = new Schema({
+const Incidente = new Schema({
   nombre: String,
   fecha: { type: Date, default: Date.now },
   contenido: [{
@@ -17,13 +17,13 @@ const IncidenteSchema = new Schema({
         "Usuario asignado+": String,
         "Grupo de propietarios+": String,
         "Propietario": String,
-        "Fecha de notificación+": Date,
+        "Fecha de notificación+": String,
         "Hora de notificación": String,
-        "Fecha de envío": Date,
+        "Fecha de envío": String,
         "Hora de envío": String,
-        "Last Resolved Date": Date,
+        "Last Resolved Date": String,
         "Last Resolved Hour": String,
-        "Fecha de cierre": Date,
+        "Fecha de cierre": String,
         "Estado SLM en tiempo real": String,
         "Tiempo Total Gestión": String,
         "Fuente reportada*": String,
@@ -34,4 +34,5 @@ const IncidenteSchema = new Schema({
   categoria: String
 });
 
-module.exports = mongoose.model('Incidente', IncidenteSchema);
+
+module.exports = mongoose.model('Incidente', Incidente);
