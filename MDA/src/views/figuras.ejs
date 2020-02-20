@@ -1,6 +1,31 @@
 <%- include ('partials/_header'); -%>
-<div class="container">
-  <canvas id="grafico1" width="400" height="300"></canvas>
-</div>
+<%- include ('partials/configChart'); -%>
+
+<canvas id="Figura1"></canvas>
+    <script>
+        var data = {            
+            labels: ['Total de Incidentes', 'Total de Requerimientos'],
+            datasets: [
+                {
+                    fill: true,
+                    backgroundColor: ["#3e95cd", "#8e5ea2"],
+                    data: [<%= Figura1 %>],
+                    borderColor:	['white', 'white'],
+                    borderWidth: [2,2]
+                }
+            ]
+        };        
+
+        var ctx = document.getElementById("Figura1").getContext("2d");
+        console.log('ctx: ',ctx, 'data: ',data, 'options: ',optionsPie)
+        var myNewChart = new Chart(ctx, {
+        animationEnabled: true,
+        type: 'pie',
+        data: data,
+        options: optionsPie,
+        
+    });
+    </script>
+    
 
 <%- include ('partials/_footer'); -%>

@@ -3,7 +3,6 @@ const router = express.Router();
 const IMNuevo = require("../models/IMModel");
 const IncidenteNuevo = require("../models/IncidenteModel");
 const RequerimientoNuevo = require("../models/RequerimientoModel");
-const url = require("url");
 
 var seleccion = [], elemento = {}
 
@@ -81,8 +80,7 @@ router.get("/seleccionar", async (req, res) => {
 			})
 		}
 	}	
-	console.log('seleccion.lenght: ', seleccion.length)
-	console.log('seleccion', seleccion)
+	console.log('seleccion.lenght: ', seleccion.length)	
 	elemento = {"idIM":seleccion[0],"idInc":seleccion[1],"idReq":seleccion[2]}	
 	if(seleccion.length == 3){
 		res.redirect('/graficar/?idIM='+ seleccion[0]+'&idInc='+seleccion[1]+'&idReq='+seleccion[2]);
@@ -112,18 +110,9 @@ router.get("/manual", async (req, res) => {
     fs.readFile(file, "utf8", async function(err, data) {
       if (err) throw err;
       try {
-        obj = await JSON.parse(data);
-        console.log(
-          "file: ",
-          file,
-          "idCarga1: ",
-          idCarga1,
-          "fileName1: ",
-          fileName1
-        );
+        obj = await JSON.parse(data);        
         var categoria = "";
-        if (idCarga1 == 1) {
-          console.log("idCarga 1");
+        if (idCarga1 == 1) {          
           categoria = "IM";
           const IMNewFile = new IMNuevo({
             nombre: fileName1,
@@ -131,8 +120,7 @@ router.get("/manual", async (req, res) => {
             categoria
           });
           await IMNewFile.save();
-        } else if (idCarga1 == 2) {
-          console.log("idCarga 2");
+        } else if (idCarga1 == 2) {          
           categoria = "Incidentes";
           const IncidenteNewFile = new IncidenteNuevo({
             nombre: fileName1,
@@ -140,8 +128,7 @@ router.get("/manual", async (req, res) => {
             categoria
           });
           await IncidenteNewFile.save();
-        } else {
-          console.log("idCarga 3");
+        } else {          
           categoria = "Requerimientos";
           const RequerimientoNewFile = new RequerimientoNuevo({
             nombre: fileName1,
