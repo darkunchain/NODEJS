@@ -1,34 +1,51 @@
 <%- include ('partials/_header'); -%>
 
-
 <div class="row">
   <div class="col-md-3 col-lg-3 col-xl-3">
     <div class="container">
-      <div class="card">        
-          <div class="card-header">
-            <h4 class="text-center"><b> Carga de archivos</b></h4>
-          </div>
-          <% for (var i=0; i < 3; i++) {%>
-          <div class="card-body">
-            <form ref="uploadForm" id="uploadForm<%= i+1 %>" action="/upload" method="POST" encType="multipart/form-data">            
-              <div class="form-group">
-                <h5>Cargar archivo <%= nameCarga[i] %></h5>
-              </div>
-                <input type="text" name="idCarga" value="<%=i+1%>" class="sr-only">                           
-              <div class="form-group">
-                <input class="form-control" type="file" name="file" />
-              </div>  
-              <div class="form-group">
-                <input type="text" name="fileName" placeholder="Digite un nombre de archivo" class="form-control">
-              </div>  
-              <div class="form-group">
-                <input class="form-control btn btn-primary" type="submit" value="Upload!" />
-              </div>  
-              
-            </form>
-          </div>
-          <% }; %>
-        
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center"><b> Carga de archivos</b></h4>
+        </div>
+        <% for (var i=0; i < 3; i++) {%>
+        <div class="card-body">
+          <form
+            ref="uploadForm"
+            id="uploadForm<%= i+1 %>"
+            action="/upload"
+            method="POST"
+            encType="multipart/form-data"
+          >
+            <div class="form-group">
+              <h5>Cargar archivo <%= nameCarga[i] %></h5>
+            </div>
+            <input
+              type="text"
+              name="idCarga"
+              value="<%=i+1%>"
+              class="sr-only"
+            />
+            <div class="form-group">
+              <input class="form-control" type="file" name="file" />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="fileName"
+                placeholder="Digite un nombre de archivo"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                class="form-control btn btn-primary"
+                type="submit"
+                value="Upload!"
+              />
+            </div>
+          </form>
+        </div>
+        <% }; %>
       </div>
     </div>
     <p></p>
@@ -45,44 +62,33 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var item in listaIM){%>
-          <tr>
-            <td><%= item %></td>
-            <td><%= listaIM[item].nombre %></td>
-            <td><%= listaIM[item].fecha %></td>
-            <td><%= listaIM[item].categoria %></td>
-            <td><button class="btn btn-secondary">usar</button></td>
-            <td><button class="btn btn-danger">eliminar</button></td>
-          </tr>
-          <% }; %>
-      </tbody>
-    </table>
-    <br>
-    
-    <table class="table table-fixed">
-      <thead>
+        <% for(var i = 0; i < listaIM.length; i++){%>
         <tr>
-          <th>ID</th>
-          <th>Nombre de archivo</th>
-          <th>Fecha</th>
-          <th>Categoria</th>
-          <th>Accion</th>
+          <td><%= i + 1 %></td>
+          <td><%= listaIM[i].nombre %></td>
+          <td><%= listaIM[i].fecha %></td>
+          <td><%= listaIM[i].categoria %></td>
+          <td>
+            <a
+              href="/usar/<%= listaIM[i]._id %>/<%=
+            listaIM[i].categoria %>"
+              class="btn <%= listaIM[i].status ? 'btn-success' : 'btn-secondary'%>"
+              >usar</a
+            >
+          </td>
+          <td>
+            <a
+              href="/borrar/<%= listaIM[i]._id %>/<%=
+              listaIM[i].categoria %>"
+              class="btn btn-danger"
+              >eliminar</a
+            >
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% for(var item in listaIncidente){%>
-          <tr>
-            <td><%= item %></td>
-            <td><%= listaIncidente[item].nombre %></td>
-            <td><%= listaIncidente[item].fecha %></td>
-            <td><%= listaIncidente[item].categoria %></td>
-            <td><button class="btn btn-secondary">usar</button></td>
-            <td><button class="btn btn-danger">eliminar</button></td>
-          </tr>
-          <% }; %>
+        <% }; %>
       </tbody>
     </table>
-    <br>
+    <br />
 
     <table class="table table-fixed">
       <thead>
@@ -95,21 +101,79 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var item in listaRequerimiento){%>
-          <tr>
-            <td><%= item %></td>
-            <td><%= listaRequerimiento[item].nombre %></td>
-            <td><%= listaRequerimiento[item].fecha %></td>
-            <td><%= listaRequerimiento[item].categoria %></td>
-            <td><button class="btn btn-secondary">usar</button></td>
-            <td><button class="btn btn-danger">eliminar</button></td>
-          </tr>
-          <% }; %>
+        <% for(var i = 0; i < listaIncidente.length; i++){%>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= listaIncidente[i].nombre %></td>
+          <td><%= listaIncidente[i].fecha %></td>
+          <td><%= listaIncidente[i].categoria %></td>
+          <td>
+            <a
+              href="/usar/<%= listaIncidente[i]._id %>/<%=
+            listaIncidente[i].categoria %>"
+              class="btn <%= listaIncidente[i].status ? 'btn-success' : 'btn-secondary'%>"
+              >usar</a
+            >
+          </td>
+          <td>
+            <a
+              href="/borrar/<%= listaIncidente[i]._id %>/<%=
+              listaIncidente[i].categoria %>"
+              class="btn btn-danger"
+              >eliminar</a
+            >
+          </td>
+        </tr>
+        <% }; %>
       </tbody>
     </table>
+    <br />
+
+    <table class="table table-fixed">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de archivo</th>
+          <th>Fecha</th>
+          <th>Categoria</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i < listaRequerimiento.length; i++){%>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= listaRequerimiento[i].nombre %></td>
+          <td><%= listaRequerimiento[i].fecha %></td>
+          <td><%= listaRequerimiento[i].categoria %></td>
+          <td>
+            <a
+              href="/usar/<%= listaRequerimiento[i]._id %>/<%=
+            listaRequerimiento[i].categoria %>"
+              class="btn <%= listaRequerimiento[i].status ? 'btn-success' : 'btn-secondary'%>"
+              >usar</a
+            >
+          </td>
+          <td>
+            <a
+              href="/borrar/<%= listaRequerimiento[i]._id %>/<%=
+               listaRequerimiento[i].categoria %>"
+              class="btn btn-danger"
+              >eliminar</a
+            >
+          </td>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <div class="container">
+      <a href="/seleccionar" class="btn btn-primary">Graficar</a> 
+    </div>
+
 
   </div>
 </div>
-
 
 <%- include ('partials/_footer'); -%>
