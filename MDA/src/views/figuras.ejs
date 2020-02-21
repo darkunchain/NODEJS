@@ -1,8 +1,29 @@
 <%- include ('partials/_header'); -%>
 <%- include ('partials/configChart'); -%>
 
-<canvas id="Figura1"></canvas>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura1"></canvas>
+        </div>
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura2"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura3"></canvas>
+        </div>
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura4"></canvas>
+        </div>
+    </div>
+
+</div>
+
     <script>
+
+        //%%%%%%%%%%%%%%%% Figura 1 %%%%%%%%%%%%%%//
         var data = {            
             labels: ['Total de Incidentes', 'Total de Requerimientos'],
             datasets: [
@@ -16,15 +37,78 @@
             ]
         };        
 
-        var ctx = document.getElementById("Figura1").getContext("2d");
-        console.log('ctx: ',ctx, 'data: ',data, 'options: ',optionsPie)
-        var myNewChart = new Chart(ctx, {
+        var ctx = document.getElementById("Figura1").getContext("2d");        
+        var Fig1 = new Chart(ctx, {
         animationEnabled: true,
         type: 'pie',
         data: data,
-        options: optionsPie,
-        
-    });
+        options: {title: {
+            text: "Total de Tickets Enero",
+            display: true,
+            position: 'top',
+            fontSize: 18,
+            fontColor: "#111"         
+          },
+          tooltips: tooltips,
+          showAllTooltips: true,
+          optionsPie }       
+        });
+
+        //%%%%%%%%%%%%%%%% Figura 2 %%%%%%%%%%%%%%//
+        var lab2Inc = ['<%= lab2Inc[0] %>','<%= lab2Inc[1] %>', '<%= lab2Inc[2] %>']
+        var dat2Inc = [<%= dat2Inc %>]
+        var lab2Req = ['<%= lab2Req[0] %>','<%= lab2Req[1] %>', '<%= lab2Req[2] %>']
+        var dat2Req = [<%= dat2Req %>]
+
+        var Alto2Data = {
+            label: 'Alta',
+            data: [dat2Inc[0],dat2Req[0]],            
+            backgroundColor: 'rgba(240, 99, 132, 0.6)',
+            borderWidth: 0,            
+        };
+        var Medio2Data = {
+            label: 'Media',
+            data:  [dat2Inc[1],dat2Req[1]],
+            backgroundColor: 'rgba(235, 155, 37, 0.6)',
+            borderWidth: 0,            
+        };
+        var Bajo2Data = {
+            label: 'Baja',
+            data:  [parseInt(dat2Inc[2]),dat2Req[2]],
+            backgroundColor: 'rgba(84, 130, 53, 0.6)',
+            borderWidth: 0,           
+        };        
+        var Fig2Data = {
+            labels: ['Incidentes', 'Requerimientos'],
+            datasets: [Alto2Data, Medio2Data, Bajo2Data]
+        };
+        console.log('data1: ',Alto2Data,'data2: ',Medio2Data,'data3: ',Bajo2Data,'Fig2Data: ',Fig2Data)
+
+               
+
+        var ctx = document.getElementById("Figura2").getContext("2d");        
+        var Fig2 = new Chart(ctx, {
+        animationEnabled: true,
+        type: 'bar',
+        data: Fig2Data,
+        options: {
+            title: {
+            text: "Tickets Por Prioridad",
+            display: true,
+            position: 'top',
+            fontSize: 18,
+            fontColor: "#111"         
+          },
+          tooltips: tooltips,
+          showAllTooltips: true,
+          barValueSpacing: 20,          
+          optionsBar
+        }
+
+        });
+
+
+
     </script>
     
 

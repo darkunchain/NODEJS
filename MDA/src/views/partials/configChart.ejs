@@ -47,24 +47,15 @@ Chart.pluginService.register({
 
 
 
-
-
-
-////////////////////////////   Variable options para graficas tipo PIE /////////////////////////////////
-
-var optionsPie = {
-          title: {
-            text: "Total de Tickets Enero",
-            display: true,
-            position: 'top',
-            fontSize: 18,
-            fontColor: "#111"         
-          },          
-          tooltips: {
+/////  Variable para mostrar tooltips siempre /////
+var tooltips = {
               enabled: true,
-              mode: 'label', //point, nearest, index, dataset, x, y
-              intersect: false,
-              position: 'average',
+              mode: 'nearest', //point, nearest, index, dataset, x, y
+              intersect: true,
+              titleAlign: 'center',
+              BodyAlign: 'center',
+              yAlign: 'bottom',
+                          
               callbacks: {
                 label: function(tooltipItem, data) {
                   //get the concerned dataset
@@ -78,28 +69,21 @@ var optionsPie = {
                   var currentValue = dataset.data[tooltipItem.index];
                   //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
                   var percentage = Math.floor(((currentValue/total) * 100)+0.5);
-                  nombre = nombres[tooltipItem.index]
-                  console.log(nombre)
-                  return nombre + ": "  + currentValue + " - " + percentage + "%";
+                  nombre = nombres[tooltipItem.index]                  
+                  return currentValue + " - " + percentage + "%";
                   
                 }
               }              
-          },
-          showAllTooltips: true,          
-          plugins: {
-              datalabels: {
-                  formatter: (value, ctx) => {
-                      let sum = 0;
-                      let dataArr = ctx.chart.data.datasets[0].data;
-                      dataArr.map(data => {
-                          sum += data;
-                      });
-                      let percentage = (value*100 / sum).toFixed(2)+"%";                      
-                      return percentage;
-                  },
-                  color: '#fff'
-              }
-          },
+          }
+
+
+
+
+////////////////////////////   Variable options para graficas tipo PIE /////////////////////////////////
+
+var optionsPie = {                 
+          tooltips: tooltips,
+          showAllTooltips: true,
           legend: {
             display: true,
             position: 'bottom',
@@ -115,6 +99,29 @@ var optionsPie = {
           rotation: -0.7 * Math.PI,
           responsive: true,
           maintainAspectRatio: true
-        }
+}
+
+
+
+
+        ////////////////////////////   Variable options para graficas tipo PIE /////////////////////////////////
+        
+
+
+
+var optionsBar = {          
+          tooltips: tooltips,          
+          showAllTooltips: true,          
+          legend: {
+            display: true,
+            position: 'bottom',
+              labels: {
+                fontColor: "#333",
+                fontSize: 16
+              }
+          },                   
+          responsive: true,
+          maintainAspectRatio: true
+      }
 
 </script>
