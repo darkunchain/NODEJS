@@ -104,15 +104,22 @@
 
         });
 
-       //%%%%%%%%%%%%%%%% Figura 3 %%%%%%%%%%%%%%//
-
-
+       //%%%%%%%%%%%%%%%% Figura 3 %%%%%%%%%%%%%%//        
+       var Fig3Inc = <%= Fig3Inc[0].name %>
+       console.log('Fig3Inc: ', Fig3Inc)   
+        
+        var lab3Req = ['<%= lab3Req[0] %>','<%= lab3Req[1] %>', '<%= lab3Req[2] %>']
+        var dat3Req = [<%= dat3Req %>]
+        var Fig3Data = {
+            labels: Fig3Inc,
+            datasets: dat3Inc
+        };
 
         var ctx = document.getElementById("Figura3").getContext("2d");
         var Fig3 = new Chart(ctx, {
             animationEnabled: true,
             type: 'bar',
-            data: Fig2Data,
+            data: Fig3Data,
             options: {
                 title: {
                     text: "Tickets Por Prioridad",

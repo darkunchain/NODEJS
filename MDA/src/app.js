@@ -1,12 +1,14 @@
 // Este es mi servidor
 const path = require("path");
 const express = require("express");
+var exphbs  = require('express-handlebars');
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const xlsxtojson = require("xlsx-to-json");
 const xlstojson = require("xls-to-json");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
+
 
 const app = express();
 
@@ -26,15 +28,15 @@ const jsonRoutes = require("./routes/jsonRoutes");
 // settings
 app.set("port", process.env.PORT || 8090);
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+app.engine('hbs', exphbs({
+  defaultLayout: 'main',
+  layoutsDir: path.join(app.get('views'), 'layouts'),
+  partialsDir: path.join(app.get('views'), 'partials'),
+  extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
 app.use(fileUpload());
-/* app.use(function(req, res, next){
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
-	res.header('Access-Control-Max-Age', '3600');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requests');
-	next();
-}); */
+
 
 // middlewares
 app.use(morgan("dev"));

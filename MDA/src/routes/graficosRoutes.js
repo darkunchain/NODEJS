@@ -13,64 +13,18 @@ router.get("/graficar/", async (req, res) => {
     const IncC = Inc.contenido
     const ReqC = Req.contenido
     const IMC = IM.contenido
-   /////%%%%%%%%%%%%%%/////   Figura 1 /////%%%%%%%%%%%%%%/////
-    var Figura1 = [IncC.length,ReqC.length]
 
-    /////%%%%%%%%%%%%%%/////   Figura 2 /////%%%%%%%%%%%%%%/////
-    var temp = []; 
-    var produce = [];
-    //////////// Funcion para contar elementos /////////////
-    function contar2(tipo){
-        for(var i=0;i<tipo.length;i++){
-            if(temp.indexOf(tipo[i].Prioridad) == -1){
-                    temp.push(tipo[i].Prioridad);
-                var _data = {};
-                _data.name = tipo[i].Prioridad;
-                _data.count = 1;                
-                produce.push(_data);
-            }else{
-                for(var j=0;j<produce.length;j++){
-                        if(produce[j].name === tipo[i].Prioridad){
-                            var _x = parseInt(produce[j].count) + 1;
-                        produce[j].count = _x;
-                        }
-                }
-            }
-        }
-        return produce
-    }    
-    var Fig2Inc = contar2(IncC)
-    produce = [];temp = [];
-    
-    var Fig2Req = contar2(ReqC)
-    produce = [];temp = [];    
-    var lab2Inc=[],dat2Inc=[],lab2Req=[],dat2Req=[]
-    for (var i=0;i<Fig2Inc.length;i++){
-        lab2Inc.push(Fig2Inc[i].name)
-        dat2Inc.push(Fig2Inc[i].count)
-    }
-    for (var i=0;i<Fig2Req.length;i++){
-        lab2Req.push(Fig2Req[i].name)
-        dat2Req.push(Fig2Req[i].count)
-    }
-    res.render('figuras', { 
-        Figura1,
-        lab2Inc,
-        dat2Inc,
-        lab2Req,
-        dat2Req})
-
-
-
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%% Funciones %%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
  
 //////////// Funcion para contar elementos /////////////
     var temp = []; 
     var produce = [];    
     function contar(tipo,prop){
         for(var i=0;i<tipo.length;i++){
-            if(temp.indexOf(tipo[i][prop]) == -1){
-                    console.log(tipo[i][prop])
-                    temp.push(tipo[i][prop]);
+            if(temp.indexOf(tipo[i][prop]) == -1){                    
+                temp.push(tipo[i][prop]);
                 var _data = {};
                 _data.name = tipo[i][prop];
                 _data.count = 1;                
@@ -96,18 +50,55 @@ router.get("/graficar/", async (req, res) => {
             }  
             return 0;  
         }  
-    }  
+    }
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%% Figuras %%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+
+  /////%%%%%%%%%%%%%%/////   Figura 1 /////%%%%%%%%%%%%%%/////
+  var Figura1 = [IncC.length,ReqC.length]
+
+  /////%%%%%%%%%%%%%%/////   Figura 2 /////%%%%%%%%%%%%%%/////    
+  var Fig2Inc = contar(IncC,"Prioridad")
+  produce = [];temp = [];    
+  var Fig2Req = contar(ReqC,"Prioridad")
+  produce = [];temp = [];    
+  var lab2Inc=[],dat2Inc=[],lab2Req=[],dat2Req=[]
+  for (var i=0;i<Fig2Inc.length;i++){
+      lab2Inc.push(Fig2Inc[i].name)
+      dat2Inc.push(Fig2Inc[i].count)
+  }
+  for (var i=0;i<Fig2Req.length;i++){
+      lab2Req.push(Fig2Req[i].name)
+      dat2Req.push(Fig2Req[i].count)
+  }
+  
+    
     /////%%%%%%%%%%%%%%/////   Figura 3 /////%%%%%%%%%%%%%%/////
     var Fig3Inc = contar(IncC,"Servicio")
-    produce = [];temp = [];
-    console.log('ReqC: ',ReqC[0])
+    produce = [];temp = [];    
     var Fig3Req = contar(ReqC,"Servicio")
     produce = [];temp = [];
     Fig3Inc = Fig3Inc.sort(ordenar("count"))
-    Fig3Req = Fig3Req.sort(ordenar("count"))
-    console.log('Fig3Inc: ',Fig3Inc, 'Fig3Req: ',Fig3Req)
+    Fig3Req = Fig3Req.sort(ordenar("count"))    
+    var lab3Inc=[],dat3Inc=[],lab3Req=[],dat3Req=[],lab31Inc=[]
+    for (var i=0;i<Fig3Inc.length;i++){
+        lab3Inc.push(Fig3Inc[i].name)        
+        dat3Inc.push(Fig3Inc[i].count)
+    }
+    for (var i=0;i<Fig3Req.length;i++){
+        lab3Req.push(Fig3Req[i].name)        
+        dat3Req.push(Fig3Req[i].count)
+    }
 
+    
 
+    res.render('figuras', { 
+        Figura1,
+        lab2Inc, dat2Inc, lab2Req, dat2Req,
+        Fig3Inc, dat3Inc, lab3Req, dat3Req
+    })
 
 });
 
