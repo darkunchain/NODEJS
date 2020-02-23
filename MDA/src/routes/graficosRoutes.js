@@ -62,22 +62,22 @@ router.get("/graficar/", async (req, res) => {
 
 
 
- /////%%%%%%%%%%%%%%/////   Figura 3 /////%%%%%%%%%%%%%%/////
-
+ 
+//////////// Funcion para contar elementos /////////////
     var temp = []; 
-    var produce = [];
-    //////////// Funcion para contar elementos /////////////
-    function contar3(tipo){
+    var produce = [];    
+    function contar(tipo,prop){
         for(var i=0;i<tipo.length;i++){
-            if(temp.indexOf(tipo[i].Servicio) == -1){
-                    temp.push(tipo[i].Servicio);
+            if(temp.indexOf(tipo[i][prop]) == -1){
+                    console.log(tipo[i][prop])
+                    temp.push(tipo[i][prop]);
                 var _data = {};
-                _data.name = tipo[i].Servicio;
+                _data.name = tipo[i][prop];
                 _data.count = 1;                
                 produce.push(_data);
             }else{
                 for(var j=0;j<produce.length;j++){
-                        if(produce[j].name === tipo[i].Servicio){
+                        if(produce[j].name === tipo[i][prop]){
                             var _x = parseInt(produce[j].count) + 1;
                         produce[j].count = _x;
                         }
@@ -86,14 +86,26 @@ router.get("/graficar/", async (req, res) => {
         }
         return produce
     }
-    var Fig3Inc = contar3(IncC)
+//////////// Funcion para ordenar elementos /////////////
+    function ordenar(prop) {  
+        return function(a, b) {  
+            if (a[prop] > b[prop]) {  
+                return 1;  
+            } else if (a[prop] < b[prop]) {  
+                return -1;  
+            }  
+            return 0;  
+        }  
+    }  
+    /////%%%%%%%%%%%%%%/////   Figura 3 /////%%%%%%%%%%%%%%/////
+    var Fig3Inc = contar(IncC,"Servicio")
     produce = [];temp = [];
-    
-    var Fig3Req = contar3(ReqC)
+    console.log('ReqC: ',ReqC[0])
+    var Fig3Req = contar(ReqC,"Servicio")
     produce = [];temp = [];
-    a = Fig3Inc.sort(count)
-    b = Fig3Req.sort(count)    
-    console.log('Fig3Inc: ',Fig3Inc, 'Fig3Inc: ', a)
+    Fig3Inc = Fig3Inc.sort(ordenar("count"))
+    Fig3Req = Fig3Req.sort(ordenar("count"))
+    console.log('Fig3Inc: ',Fig3Inc, 'Fig3Req: ',Fig3Req)
 
 
 
