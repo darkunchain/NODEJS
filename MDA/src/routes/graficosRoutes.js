@@ -63,41 +63,24 @@ router.get("/graficar/", async (req, res) => {
   var Fig2Inc = contar(IncC,"Prioridad")
   produce = [];temp = [];    
   var Fig2Req = contar(ReqC,"Prioridad")
-  produce = [];temp = [];    
-  var lab2Inc=[],dat2Inc=[],lab2Req=[],dat2Req=[]
-  for (var i=0;i<Fig2Inc.length;i++){
-      lab2Inc.push(Fig2Inc[i].name)
-      dat2Inc.push(Fig2Inc[i].count)
-  }
-  for (var i=0;i<Fig2Req.length;i++){
-      lab2Req.push(Fig2Req[i].name)
-      dat2Req.push(Fig2Req[i].count)
-  }
-  
-    
+  produce = [];temp = [];
+
     /////%%%%%%%%%%%%%%/////   Figura 3 /////%%%%%%%%%%%%%%/////
     var Fig3Inc = contar(IncC,"Servicio")
     produce = [];temp = [];    
-    var Fig3Req = contar(ReqC,"Servicio")
-    produce = [];temp = [];
     Fig3Inc = Fig3Inc.sort(ordenar("count"))
-    Fig3Req = Fig3Req.sort(ordenar("count"))    
-    var lab3Inc=[],dat3Inc=[],lab3Req=[],dat3Req=[],lab31Inc=[]
-    for (var i=0;i<Fig3Inc.length;i++){
-        lab3Inc.push(Fig3Inc[i].name)        
-        dat3Inc.push(Fig3Inc[i].count)
-    }
-    for (var i=0;i<Fig3Req.length;i++){
-        lab3Req.push(Fig3Req[i].name)        
-        dat3Req.push(Fig3Req[i].count)
-    }
 
-    
+  /////%%%%%%%%%%%%%%/////   Figura 4 /////%%%%%%%%%%%%%%/////    
+    var Fig4Req = contar(ReqC,"Servicio")
+    produce = [];temp = [];
+    Fig4Req = Fig4Req.sort(ordenar("count"))
+
+
 
     res.render('figuras', { 
         Figura1,
-        lab2Inc, dat2Inc, lab2Req, dat2Req,
-        Fig3Inc, dat3Inc, lab3Req, dat3Req
+        Fig2Inc, Fig2Req,
+        Fig3Inc, Fig4Req
     })
 
 });

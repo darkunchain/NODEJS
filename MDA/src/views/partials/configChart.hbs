@@ -78,6 +78,36 @@ var tooltips = {
 
 
 
+/////  Variable para mostrar tooltips siempre /////
+var tooltipsValue = {
+              enabled: true,
+              mode: 'nearest', //point, nearest, index, dataset, x, y
+              intersect: true,
+              titleAlign: 'center',
+              BodyAlign: 'center',
+              yAlign: 'bottom',
+                          
+              callbacks: {
+                title: function() {},
+                label: function(tooltipItem, data) {
+                  //get the concerned dataset
+                  var nombres = data.labels
+                  var dataset = data.datasets[tooltipItem.datasetIndex];
+                  //calculate the total of this data set
+                  var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                    return previousValue + currentValue;
+                  });
+                  //get the current items value
+                  var currentValue = dataset.data[tooltipItem.index];
+                  //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
+                  var percentage = Math.floor(((currentValue/total) * 100)+0.5);
+                  //nombre = nombres[tooltipItem.index]                  
+                  return currentValue + " - " + percentage + "%";
+                  
+                }
+              }              
+          }
+
 
 ////////////////////////////   Variable options para graficas tipo PIE /////////////////////////////////
 
@@ -120,7 +150,7 @@ var optionsBar = {
                 fontSize: 16
               }
           },                   
-          responsive: true,
+          responsive: false,
           maintainAspectRatio: true
       }
 

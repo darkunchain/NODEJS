@@ -1,5 +1,5 @@
-<%- include ('partials/_header'); -%>
-<%- include ('partials/configChart'); -%>
+
+
 
 <div class="container-fluid">
     <div class="row">
@@ -30,7 +30,7 @@
                 {
                     fill: true,
                     backgroundColor: ["#3e95cd", "#8e5ea2"],
-                    data: [<%= Figura1 %>],
+                    data: [{{Figura1}}],
                     borderColor:	['white', 'white'],
                     borderWidth: [2,2]
                 }
@@ -55,11 +55,17 @@
         });
 
         //%%%%%%%%%%%%%%%% Figura 2 %%%%%%%%%%%%%%//
-        var lab2Inc = ['<%= lab2Inc[0] %>','<%= lab2Inc[1] %>', '<%= lab2Inc[2] %>']
-        var dat2Inc = [<%= dat2Inc %>]
-        var lab2Req = ['<%= lab2Req[0] %>','<%= lab2Req[1] %>', '<%= lab2Req[2] %>']
-        var dat2Req = [<%= dat2Req %>]
-
+        var lab2Inc=[],dat2Inc=[],lab2Req=[],dat2Req=[]
+        {{#each Fig2Inc}}
+            lab2Inc.push('{{name}}')
+            dat2Inc.push({{count}})
+        {{/each}}        
+        {{#each Fig2Req}}
+            lab2Req.push('{{name}}')
+            dat2Req.push({{count}})
+        {{/each}} 
+        
+        console.log('lab2Inc: ', lab2Inc,'dat2Inc: ', dat2Inc)
         var Alto2Data = {
             label: 'Alta',
             data: [dat2Inc[0],dat2Req[0]],            
@@ -74,7 +80,7 @@
         };
         var Bajo2Data = {
             label: 'Baja',
-            data:  [parseInt(dat2Inc[2]),dat2Req[2]],
+            data:  [dat2Inc[2],dat2Req[2]],
             backgroundColor: 'rgba(84, 130, 53, 0.6)',
             borderWidth: 0,           
         };        
@@ -105,15 +111,20 @@
         });
 
        //%%%%%%%%%%%%%%%% Figura 3 %%%%%%%%%%%%%%//        
-       var Fig3Inc = <%= Fig3Inc[0].name %>
-       console.log('Fig3Inc: ', Fig3Inc)   
-        
-        var lab3Req = ['<%= lab3Req[0] %>','<%= lab3Req[1] %>', '<%= lab3Req[2] %>']
-        var dat3Req = [<%= dat3Req %>]
+        var lab3Inc=[],dat3Inc=[]
+        {{#each Fig3Inc}}
+            lab3Inc.push('{{name}}')
+            dat3Inc.push({{count}})
+        {{/each}}        
+            
+        console.log('lab3Inc: ', lab3Inc,'dat3Inc: ', dat3Inc)
         var Fig3Data = {
-            labels: Fig3Inc,
-            datasets: dat3Inc
+            labels: lab3Inc,
+            datasets: [{
+                backgroundColor: "rgba(240, 99, 132, 0.6)",
+                data: dat3Inc}]
         };
+        console.log('Fig3Data: ',Fig3Data)
 
         var ctx = document.getElementById("Figura3").getContext("2d");
         var Fig3 = new Chart(ctx, {
@@ -128,7 +139,7 @@
                     fontSize: 18,
                     fontColor: "#111"
                 },
-                tooltips: tooltips,
+                tooltips: tooltipsValue,
                 showAllTooltips: true,
                 barValueSpacing: 20,
                 optionsBar
@@ -137,7 +148,47 @@
         });
 
 
+
+       //%%%%%%%%%%%%%%%% Figura 4 %%%%%%%%%%%%%%//        
+        var lab4Req=[],dat4Req=[]
+        {{#each Fig4Req}}
+            lab4Req.push('{{name}}')
+            dat4Req.push({{count}})
+        {{/each}}        
+            
+        console.log('lab4Req: ', lab4Req,'dat4Req: ', dat4Req)
+        var Fig4Data = {
+            labels: lab4Req,
+            datasets: [{
+                backgroundColor: "rgba(240, 99, 132, 0.6)",
+                data: dat4Req
+                }]
+        };
+        console.log('Fig4Data: ',Fig4Data)
+
+        var ctx = document.getElementById("Figura4").getContext("2d");
+        var Fig4 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig4Data,
+            options: {
+                title: {
+                    text: "Tickets Por Prioridad",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                tooltips: tooltipsValue,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+                optionsBar
+            }
+
+        });        
+
+
     </script>
     
 
-<%- include ('partials/_footer'); -%>
+

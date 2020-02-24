@@ -1,4 +1,7 @@
-<%- include ('partials/_header'); -%>
+<pre>
+ 
+</pre>
+
 
 <div class="row">
   <div class="col-md-3 col-lg-3 col-xl-3">
@@ -7,22 +10,22 @@
         <div class="card-header">
           <h4 class="text-center"><b> Carga de archivos</b></h4>
         </div>
-        <% for (var i=0; i < 3; i++) {%>
+        {{#each nameCarga}}
         <div class="card-body">
           <form
             ref="uploadForm"
-            id="uploadForm<%= i+1 %>"
+            id="uploadForm{{inc @index}}"
             action="/upload"
             method="POST"
             encType="multipart/form-data"
           >
             <div class="form-group">
-              <h5>Cargar archivo <%= nameCarga[i] %></h5>
+              <h5>Cargar archivo {{this}}</h5>
             </div>
             <input
               type="text"
               name="idCarga"
-              value="<%=i+1%>"
+              value="{{inc @index}}"
               class="sr-only"
             />
             <div class="form-group">
@@ -45,7 +48,7 @@
             </div>
           </form>
         </div>
-        <% }; %>
+        {{/each}}
       </div>
     </div>
     <p></p>
@@ -62,30 +65,20 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var i = 0; i < listaIM.length; i++){%>
+        {{#each listaIM}}
         <tr>
-          <td><%= i + 1 %></td>
-          <td><%= listaIM[i].nombre %></td>
-          <td><%= listaIM[i].fecha %></td>
-          <td><%= listaIM[i].categoria %></td>
+          <td>{{inc @index}}</td>
+          <td>{{nombre}}</td>
+          <td>{{fecha}}</td>
+          <td>{{categoria}}</td>
           <td>
-            <a
-              href="/usar/<%= listaIM[i]._id %>/<%=
-            listaIM[i].categoria %>"
-              class="btn <%= listaIM[i].status ? 'btn-success' : 'btn-secondary'%>"
-              >usar</a
-            >
+            <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}}">usar</a>
           </td>
           <td>
-            <a
-              href="/borrar/<%= listaIM[i]._id %>/<%=
-              listaIM[i].categoria %>"
-              class="btn btn-danger"
-              >eliminar</a
-            >
+            <a href="/borrar/{{_id}}/{{categoria}}" class="btn btn-danger">eliminar</a>
           </td>
         </tr>
-        <% }; %>
+        {{/each}}
       </tbody>
     </table>
     <br />
@@ -101,30 +94,20 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var i = 0; i < listaIncidente.length; i++){%>
+        {{#each listaIncidente}}
         <tr>
-          <td><%= i + 1 %></td>
-          <td><%= listaIncidente[i].nombre %></td>
-          <td><%= listaIncidente[i].fecha %></td>
-          <td><%= listaIncidente[i].categoria %></td>
+          <td>{{inc @index}}</td>
+          <td>{{nombre}}</td>
+          <td>{{fecha}}</td>
+          <td>{{categoria}}</td>
           <td>
-            <a
-              href="/usar/<%= listaIncidente[i]._id %>/<%=
-            listaIncidente[i].categoria %>"
-              class="btn <%= listaIncidente[i].status ? 'btn-success' : 'btn-secondary'%>"
-              >usar</a
-            >
+            <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}}">usar</a>
           </td>
           <td>
-            <a
-              href="/borrar/<%= listaIncidente[i]._id %>/<%=
-              listaIncidente[i].categoria %>"
-              class="btn btn-danger"
-              >eliminar</a
-            >
+            <a href="/borrar/{{_id}}/{{categoria}}"class="btn btn-danger">eliminar</a>
           </td>
         </tr>
-        <% }; %>
+        {{/each}}
       </tbody>
     </table>
     <br />
@@ -140,30 +123,20 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var i = 0; i < listaRequerimiento.length; i++){%>
+        {{#each listaRequerimiento}}
         <tr>
-          <td><%= i + 1 %></td>
-          <td><%= listaRequerimiento[i].nombre %></td>
-          <td><%= listaRequerimiento[i].fecha %></td>
-          <td><%= listaRequerimiento[i].categoria %></td>
+          <td>{{inc @index}}</td>
+          <td>{{nombre}}</td>
+          <td>{{fecha}}</td>
+          <td>{{categoria}}</td>
           <td>
-            <a
-              href="/usar/<%= listaRequerimiento[i]._id %>/<%=
-            listaRequerimiento[i].categoria %>"
-              class="btn <%= listaRequerimiento[i].status ? 'btn-success' : 'btn-secondary'%>"
-              >usar</a
-            >
+            <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}}">usar</a>
           </td>
           <td>
-            <a
-              href="/borrar/<%= listaRequerimiento[i]._id %>/<%=
-               listaRequerimiento[i].categoria %>"
-              class="btn btn-danger"
-              >eliminar</a
-            >
+            <a href="/borrar/{{_id}}/{{categoria}}" class="btn btn-danger">eliminar</a>
           </td>
         </tr>
-        <% }; %>
+        {{/each}}
       </tbody>
     </table>
     <br>
@@ -176,4 +149,3 @@
   </div>
 </div>
 
-<%- include ('partials/_footer'); -%>

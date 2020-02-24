@@ -8,6 +8,7 @@ const xlsxtojson = require("xlsx-to-json");
 const xlstojson = require("xls-to-json");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
+var Handlebars = require('handlebars');
 
 
 const app = express();
@@ -36,6 +37,10 @@ app.engine('hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 app.use(fileUpload());
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 
 // middlewares
