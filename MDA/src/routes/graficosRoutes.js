@@ -3,7 +3,7 @@ const router = express.Router();
 const IMNuevo = require("../models/IMModel");
 const IncidenteNuevo = require("../models/IncidenteModel");
 const RequerimientoNuevo = require("../models/RequerimientoModel");
-var Chart = require('chart.js');
+
 
 router.get("/graficar/", async (req, res) => {
     const { idIM, idInc, idReq} = req.query 
@@ -28,7 +28,7 @@ router.get("/graficar/", async (req, res) => {
                 var _data = {};
                 _data.name = tipo[i][prop];
                 _data.count = 1;                
-                produce.push(_data);
+                produce.push(_data);                
             }else{
                 for(var j=0;j<produce.length;j++){
                         if(produce[j].name === tipo[i][prop]){
@@ -37,16 +37,16 @@ router.get("/graficar/", async (req, res) => {
                         }
                 }
             }
-        }
+        }        
         return produce
     }
 //////////// Funcion para ordenar elementos /////////////
     function ordenar(prop) {  
         return function(a, b) {  
             if (a[prop] > b[prop]) {  
-                return 1;  
-            } else if (a[prop] < b[prop]) {  
                 return -1;  
+            } else if (a[prop] < b[prop]) {  
+                return 1;  
             }  
             return 0;  
         }  
@@ -68,13 +68,12 @@ router.get("/graficar/", async (req, res) => {
     /////%%%%%%%%%%%%%%/////   Figura 3 /////%%%%%%%%%%%%%%/////
     var Fig3Inc = contar(IncC,"Servicio")
     produce = [];temp = [];    
-    Fig3Inc = Fig3Inc.sort(ordenar("count"))
-
-  /////%%%%%%%%%%%%%%/////   Figura 4 /////%%%%%%%%%%%%%%/////    
-    var Fig4Req = contar(ReqC,"Servicio")
+    Fig3Inc = Fig3Inc.sort(ordenar("count")).slice(0,10)    
+  /////%%%%%%%%%%%%%%/////   Figura 4 /////%%%%%%%%%%%%%%/////     
+    var Fig4Req = contar(ReqC,"Servicio")    
     produce = [];temp = [];
-    Fig4Req = Fig4Req.sort(ordenar("count"))
-
+    Fig4Req = Fig4Req.sort(ordenar("count")).slice(0,10)
+    
 
 
     res.render('figuras', { 

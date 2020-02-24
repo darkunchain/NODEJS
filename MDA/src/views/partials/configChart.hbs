@@ -154,4 +154,22 @@ var optionsBar = {
           maintainAspectRatio: true
       }
 
+
+  function percentage(arr) {
+    var sum = 0
+    var sum1 = 0
+    var perc = []    
+    var cum = []
+    for (var i = 0; i < arr.length; i++) {
+      sum = sum + arr[i]
+    }    
+    for (var i = 0; i < arr.length; i++) {
+      perc.push(((arr[i] / sum)*100))
+      sum1 = sum1 + perc[i]
+      cum.push(parseFloat(sum1))
+    }
+    dataperc = {"perc" : perc, "cum" : cum, "sum" : sum}
+    return dataperc
+  }
+
 </script>

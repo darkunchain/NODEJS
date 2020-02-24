@@ -2,7 +2,7 @@
 
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura1"></canvas>
         </div>
@@ -10,7 +10,7 @@
             <canvas id="Figura2"></canvas>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-5">
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura3"></canvas>
         </div>
@@ -63,9 +63,8 @@
         {{#each Fig2Req}}
             lab2Req.push('{{name}}')
             dat2Req.push({{count}})
-        {{/each}} 
+        {{/each}}      
         
-        console.log('lab2Inc: ', lab2Inc,'dat2Inc: ', dat2Inc)
         var Alto2Data = {
             label: 'Alta',
             data: [dat2Inc[0],dat2Req[0]],            
@@ -114,17 +113,30 @@
         var lab3Inc=[],dat3Inc=[]
         {{#each Fig3Inc}}
             lab3Inc.push('{{name}}')
-            dat3Inc.push({{count}})
-        {{/each}}        
-            
-        console.log('lab3Inc: ', lab3Inc,'dat3Inc: ', dat3Inc)
+            dat3Inc.push({{count}})            
+        {{/each}}
+        var perc3=percentage(dat3Inc)        
+        dat3perc=[perc3.perc]
+        dat3cum=perc3.cum     
         var Fig3Data = {
             labels: lab3Inc,
-            datasets: [{
-                backgroundColor: "rgba(240, 99, 132, 0.6)",
-                data: dat3Inc}]
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "rgba(50, 98, 168, 0.8)",
+                data: dat3Inc
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#8e5ea2",                
+                data: dat3cum,
+                fill: false
+                }
+            ]
         };
-        console.log('Fig3Data: ',Fig3Data)
+        console.log('Fig3Data: ', Fig3Data, 'dat3cum: ', dat3cum)
+        
 
         var ctx = document.getElementById("Figura3").getContext("2d");
         var Fig3 = new Chart(ctx, {
@@ -132,17 +144,36 @@
             type: 'bar',
             data: Fig3Data,
             options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc3.sum,
+                        min: 0
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0
+                        }
+                    }]
+                },
                 title: {
-                    text: "Tickets Por Prioridad",
+                    text: "Top 10 - Incidentes por servicio",
                     display: true,
                     position: 'top',
                     fontSize: 18,
                     fontColor: "#111"
                 },
                 tooltips: tooltipsValue,
-                showAllTooltips: true,
+                showAllTooltips: false,
                 barValueSpacing: 20,
-                optionsBar
+                //optionsBar
             }
 
         });
@@ -154,17 +185,17 @@
         {{#each Fig4Req}}
             lab4Req.push('{{name}}')
             dat4Req.push({{count}})
-        {{/each}}        
+        {{/each}}
             
-        console.log('lab4Req: ', lab4Req,'dat4Req: ', dat4Req)
+       
         var Fig4Data = {
             labels: lab4Req,
             datasets: [{
-                backgroundColor: "rgba(240, 99, 132, 0.6)",
+                backgroundColor: "rgba(50, 98, 168, 0.8)",
                 data: dat4Req
                 }]
         };
-        console.log('Fig4Data: ',Fig4Data)
+        
 
         var ctx = document.getElementById("Figura4").getContext("2d");
         var Fig4 = new Chart(ctx, {
@@ -173,7 +204,7 @@
             data: Fig4Data,
             options: {
                 title: {
-                    text: "Tickets Por Prioridad",
+                    text: "Top 10 - Requerimientos por servicio",
                     display: true,
                     position: 'top',
                     fontSize: 18,
@@ -181,7 +212,7 @@
                 },
                 tooltips: tooltipsValue,
                 showAllTooltips: true,
-                barValueSpacing: 20,
+                barValueSpacing: 40,
                 optionsBar
             }
 
