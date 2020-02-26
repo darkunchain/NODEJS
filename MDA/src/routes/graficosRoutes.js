@@ -118,7 +118,38 @@ router.get("/graficar/", async (req, res) => {
     var Fig7IM = contar(IMC, "DEPARTAMENTO")
     produce = []; temp = [];
     Fig7IM = Fig7IM.sort(ordenar("count")).slice(0, 10)
-    
+
+    /////%%%%%%%%%%%%%%/////   Figura 8 /////%%%%%%%%%%%%%%/////     
+    var Fig8IM = contar(IMC, "MUNICIPIO")
+    produce = []; temp = [];
+    Fig8IM = Fig8IM.sort(ordenar("count")).slice(0, 10)
+
+    /////%%%%%%%%%%%%%%/////   Figura 9 /////%%%%%%%%%%%%%%/////     
+    var Fig9IM = contar(IMC, "TIPO DE SEDE")
+    produce = []; temp = [];
+    Fig9IM = Fig9IM.sort(ordenar("count")).slice(0, 10)
+
+    /////%%%%%%%%%%%%%%/////   Figura 10 /////%%%%%%%%%%%%%%/////     
+    var Fig10IM = contarSin(IMC, "TIPO DE SEDE", "MUNICIPAL")
+    produce = []; temp = [];
+    Fig10IM = Fig10IM.sort(ordenar("count")).slice(0, 10)   
+
+    /////%%%%%%%%%%%%%%/////   Figura 11 /////%%%%%%%%%%%%%%/////
+    var Fig11TIGO = contarSin(IMC, "FALLA % UNE", "")
+    produce = []; temp = [];
+    var Fig11RNEC = contarSin(IMC, "FALLA % REGISTRADURIA", "")
+    produce = []; temp = [];
+    var Fig11OTRO = contarSin(IMC, "FALLA % OTROS", "")
+    produce = []; temp = [];
+
+    var Fig11T = 0, Fig11R = 0, Fig11O = 0
+    for(item in Fig11TIGO)
+        Fig11T += Fig11TIGO[item].count
+    for(item in Fig11RNEC)
+        Fig11R += Fig11RNEC[item].count
+    for(item in Fig11OTRO)
+        Fig11O += Fig11OTRO[item].count   
+   var Figura11 = [Fig11T, Fig11R, Fig11O]    
 
 
     res.render('partials/figuras/figuras', {
@@ -127,7 +158,9 @@ router.get("/graficar/", async (req, res) => {
         Fig3Inc, Fig4Req,
         Fig5Inc,
         Fig6Inc, Fig6Req,
-        Fig7IM
+        Fig7IM, Fig8IM,
+        Fig9IM, Fig10IM,
+        Figura11
     })
 
 });
@@ -135,17 +168,3 @@ router.get("/graficar/", async (req, res) => {
 module.exports = router;
 
 
-
-
-/* data = {
-  datasets: [{
-      data: [10, 20, 30]
-  }],
-
-  // These labels appear in the legend and in the tooltips when hovering different arcs
-  labels: [
-      'Red',
-      'Yellow',
-      'Blue'
-  ]
-}; */

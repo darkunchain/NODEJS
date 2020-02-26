@@ -18,15 +18,15 @@
                 yAxisID: 'A',
                 backgroundColor: "#5a81b8",
                 data: dat7IM,
-                label: 'Incidentes'
+                label: 'Tickets por departamento'
                 },
                 {                
                 type: "bar",
                 yAxisID: 'A',
-                backgroundColor: "#dd8443",                                
+                //backgroundColor: "#dd8443",                                
                 data: deps,
                 fill: false,
-                label: 'Requerimientos'              
+                label: 'Municipios por departamento'              
                 }
             ]
         };
@@ -48,13 +48,93 @@
                     }]
                 },
                 title: {
-                    text: "Fuente de reporte Tickets",
+                    text: "Top 10 - Total de Tickets por Departamento",
                     display: true,
                     position: 'top',
                     fontSize: 18,
                     fontColor: "#111"
                 },               
                 tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+//%%%%%%%%%%%%%%%% Figura 8 %%%%%%%%%%%%%%//        
+        var lab8IM=[],dat8IM=[]
+        {{#each Fig8IM}}
+            lab8IM.push('{{name}}')            
+            dat8IM.push({{count}})            
+        {{/each}}
+        var perc8=percentage(dat8IM)        
+        dat8perc=[perc8.perc]
+        dat8cum=perc8.cum
+        dat8p80=perc8.p80
+        
+        var Fig8Data = {
+            labels: lab8IM,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#5a81b8",
+                data: dat8IM,
+                label: 'Requerimientos'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#dd8443",                
+                data: dat8cum,
+                fill: false,
+                label: 'Pareto'                
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#92b684",                
+                data: dat8p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura8").getContext("2d");
+        var Fig8 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig8Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc8.sum,
+                        min: 0,                                         
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Municipios con mayor numero de fallas",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSin,
                 showAllTooltips: true,
                 barValueSpacing: 20,
             }
