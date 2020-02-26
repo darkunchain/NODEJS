@@ -1,0 +1,144 @@
+        //%%%%%%%%%%%%%%%% Figura 5 %%%%%%%%%%%%%%//        
+        var lab5Inc=[],dat5Inc=[]
+        {{#each Fig5Inc}}
+            lab5Inc.push('{{name}}')
+            dat5Inc.push({{count}})            
+        {{/each}}
+        var perc5=percentage(dat5Inc)        
+        dat5perc=[perc5.perc]
+        dat5cum=perc5.cum
+        dat5p80=perc5.p80
+        var Fig5Data = {
+            labels: lab5Inc,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#5a81b8",
+                data: dat5Inc,
+                label: 'Incidentes'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#dd8443",                
+                data: dat5cum,
+                fill: false,
+                label: 'Pareto'              
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#92b684",                
+                data: dat5p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura5").getContext("2d");
+        var Fig3 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig5Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc5.sum,
+                        min: 0                        
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Incidentes por servicio (Sin Conectividad WAN)",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                labels: ['Incidentes','Pareto','80%'],
+                name: ['Incidentes','Pareto','80%'],
+                legend: {
+                    display: true,
+                    legendText : ['Incidentes','Pareto','80%']
+                },
+                tooltips: tooltipsSin,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+//%%%%%%%%%%%%%%%% Figura 6 %%%%%%%%%%%%%%//        
+        var lab6Inc=[],dat6Inc=[],lab6Req=[],dat6Req=[]
+        {{#each Fig6Inc}}
+            lab6Inc.push('{{name}}')
+            dat6Inc.push({{count}})            
+        {{/each}}
+        {{#each Fig6Req}}
+            lab6Req.push('{{name}}')
+            dat6Req.push({{count}})            
+        {{/each}}
+        
+        var Fig6Data = {
+            labels: lab6Inc || lab6Req,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#5a81b8",
+                data: dat6Inc,
+                label: 'Incidentes'
+                },
+                {                
+                type: "bar",
+                yAxisID: 'A',
+                backgroundColor: "#dd8443",                                
+                data: dat6Req,
+                fill: false,
+                label: 'Requerimientos'              
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura6").getContext("2d");
+        var Fig6 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig6Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'logarithmic',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        //min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Fuente de reporte Tickets",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsValue,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });

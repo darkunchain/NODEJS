@@ -1,0 +1,164 @@
+       //%%%%%%%%%%%%%%%% Figura 3 %%%%%%%%%%%%%%//        
+        var lab3Inc=[],dat3Inc=[]
+        {{#each Fig3Inc}}
+            lab3Inc.push('{{name}}')
+            dat3Inc.push({{count}})            
+        {{/each}}
+        var perc3=percentage(dat3Inc)        
+        dat3perc=[perc3.perc]
+        dat3cum=perc3.cum
+        dat3p80=perc3.p80
+        var Fig3Data = {
+            labels: lab3Inc,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#5a81b8",
+                data: dat3Inc,
+                label: 'Incidentes'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#dd8443",                
+                data: dat3cum,
+                fill: false,
+                label: 'Pareto'              
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#92b684",                
+                data: dat3p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        }; 
+        var ctx = document.getElementById("Figura3").getContext("2d");
+        var Fig3 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig3Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc3.sum,
+                        min: 0                        
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                            callback: function(value, index, values) {
+                                return value + ' %';
+                            } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Incidentes por servicio",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                labels: ['Incidentes','Pareto','80%'],
+                name: ['Incidentes','Pareto','80%'],
+                legend: {
+                    display: true,
+                    legendText : ['Incidentes','Pareto','80%']
+                },
+                tooltips: tooltipsSin,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+
+        });
+
+
+
+       //%%%%%%%%%%%%%%%% Figura 4 %%%%%%%%%%%%%%//        
+         var lab4Inc=[],dat4Inc=[]
+        {{#each Fig4Req}}
+            lab4Inc.push('{{name}}')
+            dat4Inc.push({{count}})            
+        {{/each}}
+        var perc4=percentage(dat4Inc)        
+        dat4perc=[perc4.perc]
+        dat4cum=perc4.cum
+        dat4p80=perc4.p80    
+        var Fig4Data = {
+            labels: lab4Inc,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#5a81b8",
+                data: dat4Inc,
+                label: 'Requerimientos'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#dd8443",                
+                data: dat4cum,
+                fill: false,
+                label: 'Pareto'                
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#92b684",                
+                data: dat4p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura4").getContext("2d");
+        var Fig4 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig4Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc4.sum,
+                        min: 0,                                         
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Requerimientos por servicio",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                tooltips: tooltipsSin,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });

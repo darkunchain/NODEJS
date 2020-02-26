@@ -1,10 +1,14 @@
 <script>
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%% Funciones %%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%% Mostrar tooltips siempre %%%%%%%%%%%%%%%%%%%%%%%//
   Chart.pluginService.register({
     beforeRender: function (chart) {
       if (chart.config.options.showAllTooltips) {
-        // create an array of tooltips
-        // we can't use the chart tooltip because there is only one tooltip per chart
         chart.pluginTooltips = [];
         chart.config.data.datasets.forEach(function (dataset, i) {
           chart.getDatasetMeta(i).data.forEach(function (sector, j) {
@@ -16,27 +20,21 @@
               _active: [sector]
             }, chart));
           });
-        });
-
-        // turn off normal tooltips
+        });        
         chart.options.tooltips.enabled = false;
       }
     },
     afterDraw: function (chart, easing) {
-      if (chart.config.options.showAllTooltips) {
-        // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+      if (chart.config.options.showAllTooltips) {        
         if (!chart.allTooltipsOnce) {
           if (easing !== 1)
             return;
           chart.allTooltipsOnce = true;
         }
-
-        // turn on tooltips
         chart.options.tooltips.enabled = true;
         Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
           tooltip.initialize();
           tooltip.update();
-          // we don't actually need this since we are not animating tooltips
           tooltip.pivot();
           tooltip.transition(easing).draw();
         });
@@ -45,8 +43,34 @@
     }
   });
 
+//%%%%%%%%%%%%%%%%%%%%%%%% hallar porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
+  function percentage(arr) {
+    var sum = 0, sum1 = 0, perc = [], cum = [], p80 = []
+    for (var i = 0; i < arr.length; i++) {
+      sum = sum + arr[i]
+    }
+    for (var i = 0; i < arr.length; i++) {
+      perc.push(((arr[i] / sum) * 100))
+      sum1 = sum1 + perc[i]
+      cum.push(parseFloat(sum1))
+      p80.push(80)
+    }
+    dataperc = { "perc": perc, "cum": cum, "sum": sum, "p80": p80 }
+    return dataperc
+  }
 
-  /////  Variable para mostrar tooltips siempre /////
+
+
+
+  
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%% Variables %%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%% hallar porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
   var tooltips = {
     enabled: true,
     mode: 'nearest', //point, nearest, index, dataset, x, y
@@ -73,7 +97,7 @@
 
 
 
-  /////  Variable para mostrar tooltips siempre /////
+  //%%%%%%%%%%%%%%%%%%%%%%%% tooltips todas las graficas %%%%%%%%%%%%%%%%%%%%%%%//
   var tooltipsValue = {
     enabled: true,
     mode: 'nearest', //point, nearest, index, dataset, x, y
@@ -102,7 +126,7 @@
   }
 
 
-
+ //%%%%%%%%%%%%%%%%%%%%%%%% tooltips solo la primera grafica %%%%%%%%%%%%%%%%%%%%%%%//
   var tooltipsSin = {
     enabled: true,
     mode: 'nearest', //point, nearest, index, dataset, x, y
@@ -130,9 +154,7 @@
     }
   }
 
-
-  ////////////////////////////   Variable options para graficas tipo PIE /////////////////////////////////
-
+ //%%%%%%%%%%%%%%%%%%%%%%%% opciones pie %%%%%%%%%%%%%%%%%%%%%%%//
   var optionsPie = {
     tooltips: tooltips,
     showAllTooltips: true,
@@ -153,14 +175,7 @@
     maintainAspectRatio: true
   }
 
-
-
-
-  ////////////////////////////   Variable options para graficas tipo PIE /////////////////////////////////
-
-
-
-
+  //%%%%%%%%%%%%%%%%%%%%%%%% opciones bar %%%%%%%%%%%%%%%%%%%%%%%//
   var optionsBar = {
     tooltips: tooltips,
     showAllTooltips: true,
@@ -176,20 +191,9 @@
     maintainAspectRatio: true
   }
 
+var departamentos={
+  
+}
 
-  function percentage(arr) {
-    var sum = 0, sum1 = 0, perc = [], cum = [], p80 = []
-    for (var i = 0; i < arr.length; i++) {
-      sum = sum + arr[i]
-    }
-    for (var i = 0; i < arr.length; i++) {
-      perc.push(((arr[i] / sum) * 100))
-      sum1 = sum1 + perc[i]
-      cum.push(parseFloat(sum1))
-      p80.push(80)
-    }
-    dataperc = { "perc": perc, "cum": cum, "sum": sum, "p80": p80 }
-    return dataperc
-  }
 
 </script>

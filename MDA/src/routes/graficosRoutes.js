@@ -95,14 +95,17 @@ router.get("/graficar/", async (req, res) => {
     var Fig3Inc = contar(IncC, "Servicio")
     produce = []; temp = [];
     Fig3Inc = Fig3Inc.sort(ordenar("count")).slice(0, 10)
+
     /////%%%%%%%%%%%%%%/////   Figura 4 /////%%%%%%%%%%%%%%/////     
     var Fig4Req = contar(ReqC, "Servicio")
     produce = []; temp = [];
     Fig4Req = Fig4Req.sort(ordenar("count")).slice(0, 10)
+
     /////%%%%%%%%%%%%%%/////   Figura 5 /////%%%%%%%%%%%%%%/////     
     var Fig5Inc = contarSin(IncC, "Servicio", "CONECTIVIDAD WAN")
     produce = []; temp = [];
     Fig5Inc = Fig5Inc.sort(ordenar("count")).slice(0, 10)
+
     /////%%%%%%%%%%%%%%/////   Figura 6 /////%%%%%%%%%%%%%%/////     
     var Fig6Inc = contar(IncC, "Fuente Reportada")
     produce = []; temp = [];
@@ -111,13 +114,20 @@ router.get("/graficar/", async (req, res) => {
     produce = []; temp = [];
     Fig6Req = Fig6Req.sort(ordenar("count")).slice(0, 10)
 
+    /////%%%%%%%%%%%%%%/////   Figura 7 /////%%%%%%%%%%%%%%/////     
+    var Fig7IM = contar(IMC, "DEPARTAMENTO")
+    produce = []; temp = [];
+    Fig7IM = Fig7IM.sort(ordenar("count")).slice(0, 10)
+    
 
-    res.render('figuras', {
+
+    res.render('partials/figuras/figuras', {
         Figura1,
         Fig2Inc, Fig2Req,
         Fig3Inc, Fig4Req,
         Fig5Inc,
-        Fig6Inc, Fig6Req
+        Fig6Inc, Fig6Req,
+        Fig7IM
     })
 
 });

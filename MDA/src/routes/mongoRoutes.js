@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const IMNuevo = require("../models/IMModel");
+const departamentoNuevo = require("../models/depModel");
 const IncidenteNuevo = require("../models/IncidenteModel");
 const RequerimientoNuevo = require("../models/RequerimientoModel");
+const fs  = require("fs");
 
 var seleccion = [], elemento = {}
 
@@ -100,9 +102,9 @@ router.get("/seleccionar", async (req, res) => {
 //////////////// Inclusion manual de archivos  //////////////////////
 ////////////////////////////////////////////////////////////////////
 router.get("/manual", async (req, res) => {
-  var ruta = "./src/archivos/Ticket IM.xlsx.json";
-  var idCarga1 = 1;
-  var fileName1 = "Ticket IM Enero";
+  var ruta = "./src/archivos/deptos.json";
+  var idCarga1 = 5;
+  var fileName1 = "Departamentos";
   leeArchivo(ruta, idCarga1, fileName1);
 
   function leeArchivo(file, idCarga1, fileName1) {
@@ -128,6 +130,13 @@ router.get("/manual", async (req, res) => {
             categoria
           });
           await IncidenteNewFile.save();
+        } else if(idCarga1 == 5){
+          categoria = "otra";
+          const otraNewFile = new departamentoNuevo({
+           obj
+          
+          });
+          await otraNewFile.save();
         } else {          
           categoria = "Requerimientos";
           const RequerimientoNewFile = new RequerimientoNuevo({

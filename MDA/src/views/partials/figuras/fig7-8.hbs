@@ -1,0 +1,56 @@
+        //%%%%%%%%%%%%%%%% Figura 7 %%%%%%%%%%%%%%//        
+        var lab7IM=[],dat7IM=[]
+        {{#each Fig7IM}}
+            lab7Inc.push('{{name}}')
+            dat7Inc.push({{count}})            
+        {{/each}}
+        
+        
+        var Fig7Data = {
+            labels: lab7Inc,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#5a81b8",
+                data: dat7IM,
+                label: 'Incidentes'
+                },
+                {                
+                type: "bar",
+                yAxisID: 'A',
+                backgroundColor: "#dd8443",                                
+                data: deps,
+                fill: false,
+                label: 'Requerimientos'              
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura7").getContext("2d");
+        var Fig7 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig7Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        //min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Fuente de reporte Tickets",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsValue,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
