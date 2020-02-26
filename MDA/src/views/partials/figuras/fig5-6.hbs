@@ -1,10 +1,11 @@
+        {{/each}}
+        var perc5=percentage(dat5Inc)        
+<script>
         //%%%%%%%%%%%%%%%% Figura 5 %%%%%%%%%%%%%%//        
         var lab5Inc=[],dat5Inc=[]
         {{#each Fig5Inc}}
             lab5Inc.push('{{name}}')
             dat5Inc.push({{count}})            
-        {{/each}}
-        var perc5=percentage(dat5Inc)        
         dat5perc=[perc5.perc]
         dat5cum=perc5.cum
         dat5p80=perc5.p80
@@ -142,3 +143,4 @@
                 barValueSpacing: 20,
             }
         });
+</script>        
