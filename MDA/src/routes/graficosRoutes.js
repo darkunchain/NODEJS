@@ -260,7 +260,11 @@ router.get("/graficar/", async (req, res) => {
     produce = []; temp = [];    
     Fig21 = Fig21.sort(ordenar("name"))
     tit21="Creación de Incidentes por Fecha"
-    
+    //var Fig21d = new Date(Fig21[0].name)
+    var xxxx=Fig21[0].name
+    var Fig21d = new Date(String(xxxx))    
+    var Fig21dd= Date.parse(Fig21d,"mm/dd")
+    console.log('xxxx: ',String(xxxx),'Fig21: ',Fig21[0],'Fig21d: ', Fig21d,'Fig21dd: ', Fig21dd)
 
     /////%%%%%%%%%%%%%%/////   Figura 22 /////%%%%%%%%%%%%%%/////
     var Fig22 = contar(ReqC, "Fecha Envío (Creación)")
@@ -268,7 +272,7 @@ router.get("/graficar/", async (req, res) => {
     Fig22 = Fig22.sort(ordenar("name"))
     tit22="Creación de Requerimientos por Fecha"
     var Fig22d = new Date(Fig22[0].name)
-    console.log('Fig22: ',Fig22[0],'Fig22d: ', Fig22d)
+    //console.log('Fig22: ',Fig22[0],'Fig22d: ', Fig22d)
     Date.parse(Fig22d,"mm/dd")
     //Date.parse()
     

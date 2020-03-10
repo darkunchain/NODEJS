@@ -24,6 +24,16 @@
             data: Fig21Data,
             options: {
                 scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                            round: 'day',
+                            displayFormats: {
+                                day: 'MM DD YY'
+                            }
+                        },
+                    }],
                     yAxes: [{
                         id: 'A',
                         type: 'linear',
@@ -46,6 +56,11 @@
                 barValueSpacing: 22,
             }
         });
+
+               
+
+
+
 
 
                   //%%%%%%%%%%%%%%%% Figura 22 %%%%%%%%%%%%%%//        
