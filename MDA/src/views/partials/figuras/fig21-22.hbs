@@ -1,0 +1,98 @@
+<script>
+
+              //%%%%%%%%%%%%%%%% Figura 21 %%%%%%%%%%%%%%//        
+        var lab21=[],dat21=[]
+        {{#each Fig21}}
+            lab21.push("{{name}}")            
+            dat21.push({{count}})            
+        {{/each}}        
+        var Fig21Data = {
+            labels: lab21,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat21,
+                label: 'No. Incidentes'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura21").getContext("2d");
+        var Fig21 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig21Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "{{tit21}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP1,
+                showAllTooltips: true,
+                barValueSpacing: 22,
+            }
+        });
+
+
+                  //%%%%%%%%%%%%%%%% Figura 22 %%%%%%%%%%%%%%//        
+        var lab22=[],dat22=[]
+        {{#each Fig22}}
+            lab22.push("{{name}}")            
+            dat22.push({{count}})            
+        {{/each}}
+        
+        var Fig22Data = {
+            labels: lab22,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat22,
+                label: 'No. de Requerimientos'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura22").getContext("2d");
+        var Fig22 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig22Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "{{tit22}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP1,
+                showAllTooltips: true,
+                barValueSpacing: 22,
+            }
+        });
+</script>

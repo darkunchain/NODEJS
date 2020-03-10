@@ -217,6 +217,36 @@
   }
 
 
+   //%%%%%%%%%%%%%%%%%%%%%%%% tooltips primera grafica sin porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
+  var tooltipsSinP1 = {
+    enabled: true,
+    mode: 'nearest', //point, nearest, index, dataset, x, y
+    intersect: true,
+    titleAlign: 'center',
+    BodyAlign: 'center',
+    yAlign: 'bottom',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    bodyFontColor: '#000000',
+    displayColors: false,
+    caretPadding: 10, //posicion de la flecha del tooltip
+    position: 'posicion',
+    callbacks: {
+      title: function () { },
+      label: function (tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });        
+        var currentValue = dataset.data[tooltipItem.index]
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        var xLabel = data.datasets[tooltipItem.datasetIndex].label;
+        var yLabel = tooltipItem.yLabel;                  
+        return [currentValue];                 
+      }
+    }
+  }
+
+
  //%%%%%%%%%%%%%%%%%%%%%%%% tooltips solo la primera grafica %%%%%%%%%%%%%%%%%%%%%%%//
   var tooltipsSin = {
     enabled: true,

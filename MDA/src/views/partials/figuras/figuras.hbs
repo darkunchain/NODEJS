@@ -1,5 +1,6 @@
 
 <div class="container-fluid">
+    <div class="row mb-5 bg-dark text-white block"><h1 class="text-center">Resumen de Tickets</h1></div>
     <div class="row mb-5">
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura1"></canvas>
@@ -24,6 +25,7 @@
             <canvas id="Figura6"></canvas>
         </div>
     </div>
+    <div class="row mb-5 bg-dark text-white block"><h1>Canales Caídos</h1></div>
     <div class="row mt-5 mb-5">
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura7"></canvas>
@@ -46,14 +48,78 @@
         </div>
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura12"></canvas>
+            <div class="row">
+                <table class="ml-5">                    
+                    {{#each iter12}}
+                    <tr>
+                        <td>{{ind}}. </td>
+                        <td>{{falla}}</td>
+                    </tr> 
+                    {{/each}}
+                </table>
+            </div>
         </div>
     </div>
     <div class="row mt-5 mb-5">
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura13"></canvas>
+            <div class="row">
+                <table class="ml-5">                    
+                    {{#each iter13}}
+                    <tr>
+                        <td>{{ind}}. </td>
+                        <td>{{falla}}</td>
+                    </tr> 
+                    {{/each}}
+                </table>
+            </div>
         </div>
         <div class="col col-md-6 col-lg-6 col-xl-6">
             <canvas id="Figura14"></canvas>
+            <div class="row">
+                <table class="ml-5">                    
+                    {{#each iter14}}
+                    <tr>
+                        <td>{{ind}}. </td>
+                        <td>{{falla}}</td>
+                    </tr> 
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura15"></canvas>
+        </div>
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura16"></canvas>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura17"></canvas>
+        </div>
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura18"></canvas>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura19"></canvas>
+        </div>
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura20"></canvas>
+        </div>
+    </div>
+    <div class="row mb-5 bg-dark text-white block"><h1>Creación y cierre de Tickets</h1></div>
+    <div class="row mt-5 mb-5">
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura21"></canvas>
+        </div>
+        <div class="col col-md-6 col-lg-6 col-xl-6">
+            <canvas id="Figura22"></canvas>
         </div>
     </div>
 
@@ -67,6 +133,10 @@
 {{> figuras/fig9-10 }}
 {{> figuras/fig11-12 }}
 {{> figuras/fig13-14 }}
+{{> figuras/fig15-16 }}
+{{> figuras/fig17-18 }}
+{{> figuras/fig19-20 }}
+{{> figuras/fig21-22 }}
 
     
 

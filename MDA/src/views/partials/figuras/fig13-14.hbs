@@ -1,4 +1,180 @@
 <script>
+            //%%%%%%%%%%%%%%%% Figura 13 %%%%%%%%%%%%%%//        
+        var lab13=[],dat13=[], lab13n=[]
+        {{#each Fig13}}
+            lab13.push('{{name}}')            
+            dat13.push({{count}})            
+        {{/each}}
+        var perc13=percentage(dat13)        
+        dat13perc=[perc13.perc]
+        dat13cum=perc13.cum
+        dat13p80=perc13.p80
+        lab13n=['a','b','c','d','e','f','g','h','i','j']
+        var labt=lab13.length
+        if(labt<10) {
+            lab13n=lab13n.slice(0, labt)
+        }
+        console.log()
+        
+        
+        var Fig13Data = {
+            labels: lab13n,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat13,
+                label: 'Fallas'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#00AEED",                
+                data: dat13cum,
+                fill: false,
+                label: 'Pareto'                
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#A3A3A3",                
+                data: dat13p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura13").getContext("2d");
+        var Fig13 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig13Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc13.sum,
+                        min: 0,                                         
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Fallas Atribuibles a REGISTRADURÍA",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSin,
+                showAllTooltips: true,
+                barValueSpacing: 20,                
+            }
+        });
+
+
+
+                    //%%%%%%%%%%%%%%%% Figura 14 %%%%%%%%%%%%%%//        
+        var lab14=[],dat14=[], lab14n=[]
+        {{#each Fig14}}
+            lab14.push('{{name}}')            
+            dat14.push({{count}})            
+        {{/each}}
+        var perc14=percentage(dat14)        
+        dat14perc=[perc14.perc]
+        dat14cum=perc14.cum
+        dat14p80=perc14.p80
+        lab14n=['a','b','c','d','e','f','g','h','i','j']
+        var labt=lab14.length
+        if(labt<10) {
+            lab14n=lab14n.slice(0, labt)
+        }
+        console.log()
+        
+        
+        var Fig14Data = {
+            labels: lab14n,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat14,
+                label: 'Fallas'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#00AEED",                
+                data: dat14cum,
+                fill: false,
+                label: 'Pareto'                
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#A3A3A3",                
+                data: dat14p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura14").getContext("2d");
+        var Fig14 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig14Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc14.sum,
+                        min: 0,                                         
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Fallas Atribuibles a FACTORES EXTERNOS",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSin,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+                
+            }
+        });
+
+
 
     
 </script>

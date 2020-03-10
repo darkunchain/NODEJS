@@ -6,17 +6,7 @@ const IncidenteNuevo = require ('../models/IMModel')
 const fs = require('fs')
 
 var obj
-fs.readFile('./src/archivos/pruebas1.json', 'utf8', function (err, data) {
-    if (err)
-        throw err;
-    try {            
-        obj = JSON.parse(data);
-    }
-    catch (e) {
-        console.error(e);
-    }
-    return obj
-});
+
 
 
 router.get('/', function(req, res) {    

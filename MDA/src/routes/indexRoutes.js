@@ -34,9 +34,9 @@ router.get("/xlsxtojson/", async (req, res) => {
   if (idCarga == 1) {
     var sheet = "Reporte IM";
   } else if (idCarga == 2) {
-    sheet = "Modificada";
+    sheet = "Modificado";
   } else {
-    sheet = "Modificada";
+    sheet = "Modificado";
   }
   xlsxtojson(
     {
