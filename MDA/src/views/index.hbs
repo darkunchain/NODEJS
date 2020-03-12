@@ -1,158 +1,110 @@
-<div class="row">
-  <div class="col-md-3 col-lg-3 col-xl-3">
+<div class="container mt-5">
+  <div class="row">
+    {{!-- //%%%%%%%%%%%%%%%% Botones para graficar los meses %%%%%%%%%%%%%%// --}}
+      <a class="btn btn-dark ml-2" href="
+      /graficar/?idIM=5e4d97a991952587599fff3b&idInc=5e4eba2d31549944d5cf7ced&idReq=5e53fda22a90a032d4bee8c8" role="button">
+      Graficar Enero
+      </a>
+      <a class="btn btn-dark ml-2" href="
+      /graficar/?idIM=5e610cf4401d7266a8479a3e&idInc=5e6112a72500134484072b15&idReq=5e6112b52500134484073934" role="button">
+      Graficar Febrero
+      </a>
+  </div> 
+
+  {{!-- //%%%%%%%%%%%%%%%% Listado de archivos cargados %%%%%%%%%%%%%%// --}} 
+  <div class="row bg-secondary text-white block mt-5"><h3>Listado de archivos cargados</h3></div>
+
+  <div class="row">
+      <table class="table table-fixed mt-2">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre de archivo</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each listaIM}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{nombre}}</td>
+            <td>{{fecha}}</td>
+            <td>{{categoria}}</td>
+            <td>
+              <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}}  btn-sm">usar</a>
+            </td>
+            <td>
+              <a href="/borrar/{{_id}}/{{categoria}}" class="btn btn-danger btn-sm">eliminar</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <br />
+
+      <table class="table table-fixed">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre de archivo</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each listaIncidente}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{nombre}}</td>
+            <td>{{fecha}}</td>
+            <td>{{categoria}}</td>
+            <td>
+              <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}} btn-sm">usar</a>
+            </td>
+            <td>
+              <a href="/borrar/{{_id}}/{{categoria}}"class="btn btn-danger btn-sm">eliminar</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <br />
+
+      <table class="table table-fixed">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre de archivo</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each listaRequerimiento}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{nombre}}</td>
+            <td>{{fecha}}</td>
+            <td>{{categoria}}</td>
+            <td>
+              <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}} btn-sm">usar</a>
+            </td>
+            <td>
+              <a href="/borrar/{{_id}}/{{categoria}}" class="btn btn-danger btn-sm">eliminar</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+  </div>    
+
+  <div class="row">
     <div class="container">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="text-center"><b> Carga de archivos</b></h4>
-        </div>
-        {{#each nameCarga}}
-        <div class="card-body">
-          <form
-            ref="uploadForm"
-            id="uploadForm{{inc @index}}"
-            action="/upload"
-            method="POST"
-            encType="multipart/form-data"
-          >
-            <div class="form-group">
-              <h5>Cargar archivo {{this}}</h5>
-            </div>
-            <input
-              type="text"
-              name="idCarga"
-              value="{{inc @index}}"
-              class="sr-only"
-            />
-            <div class="form-group">
-              <input class="form-control" type="file" name="file" />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="fileName"
-                placeholder="Digite un nombre de archivo"
-                class="form-control"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                class="form-control btn btn-primary"
-                type="submit"
-                value="Upload!"
-              />
-            </div>
-          </form>
-        </div>
-        {{/each}}
-      </div>
+        <a href="/seleccionar" class="btn btn-primary">Graficar</a> 
     </div>
-    <p></p>
-  </div>
-  <div class="col-md-8 col-lg-8 col-xl-8">
-{{!-- //%%%%%%%%%%%%%%%% Botones para graficar los meses %%%%%%%%%%%%%%// --}}
-    <a class="btn btn-dark" target="_blank" href="
-    /graficar/?idIM=5e4d97a991952587599fff3b&idInc=5e4eba2d31549944d5cf7ced&idReq=5e53fda22a90a032d4bee8c8" role="button">
-    Graficar Enero
-    </a>
-    <a class="btn btn-dark" target="_blank" href="
-    /graficar/?idIM=5e610cf4401d7266a8479a3e&idInc=5e6112a72500134484072b15&idReq=5e6112b52500134484073934" role="button">
-    Graficar Febrero
-    </a>
-{{!-- //%%%%%%%%%%%%%%%% Listado de archivos cargados %%%%%%%%%%%%%%// --}} 
-    <div class="row mb-5 bg-secondary text-white block mt-5"><h3>Listado de archivos cargados</h3></div>
-    
-    <table class="table table-fixed mt-5">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre de archivo</th>
-          <th>Fecha</th>
-          <th>Categoria</th>
-          <th>Accion</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each listaIM}}
-        <tr>
-          <td>{{inc @index}}</td>
-          <td>{{nombre}}</td>
-          <td>{{fecha}}</td>
-          <td>{{categoria}}</td>
-          <td>
-            <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}}  btn-sm">usar</a>
-          </td>
-          <td>
-            <a href="/borrar/{{_id}}/{{categoria}}" class="btn btn-danger btn-sm">eliminar</a>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <br />
-
-    <table class="table table-fixed">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre de archivo</th>
-          <th>Fecha</th>
-          <th>Categoria</th>
-          <th>Accion</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each listaIncidente}}
-        <tr>
-          <td>{{inc @index}}</td>
-          <td>{{nombre}}</td>
-          <td>{{fecha}}</td>
-          <td>{{categoria}}</td>
-          <td>
-            <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}} btn-sm">usar</a>
-          </td>
-          <td>
-            <a href="/borrar/{{_id}}/{{categoria}}"class="btn btn-danger btn-sm">eliminar</a>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <br />
-
-    <table class="table table-fixed">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre de archivo</th>
-          <th>Fecha</th>
-          <th>Categoria</th>
-          <th>Accion</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each listaRequerimiento}}
-        <tr>
-          <td>{{inc @index}}</td>
-          <td>{{nombre}}</td>
-          <td>{{fecha}}</td>
-          <td>{{categoria}}</td>
-          <td>
-            <a href="/usar/{{_id}}/{{categoria}}" class="btn {{#if status}} btn-success {{else}} btn-secondary{{/if}} btn-sm">usar</a>
-          </td>
-          <td>
-            <a href="/borrar/{{_id}}/{{categoria}}" class="btn btn-danger btn-sm">eliminar</a>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <br>
-    <br>
-    <div class="container">
-      <a href="/seleccionar" class="btn btn-primary">Graficar</a> 
-    </div>
-
-
   </div>
 </div>
-
