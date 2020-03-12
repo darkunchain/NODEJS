@@ -8,8 +8,7 @@ const RequerimientoNuevo = require("../models/RequerimientoModel");
 const url = require("url");
 
 ////////////// Index Route  //////////////////
-router.get("/", async (req, res) => {
-  const nameCarga = ["IM", "Incidentes", "Requerimientos"];
+router.get("/", async (req, res) => {  
   const listaIM = await IMNuevo.find().sort({ fecha: "desc" });
   const listaIncidente = await IncidenteNuevo.find().sort({ fecha: "desc" });
   const listaRequerimiento = await RequerimientoNuevo.find().sort({
@@ -17,8 +16,7 @@ router.get("/", async (req, res) => {
   });
   var status = "";
   //console.log('nombrecarga: ', nombrecarga.1)
-  res.render("index", {
-    nameCarga,
+  res.render("index", {    
     listaIM,
     listaIncidente,
     listaRequerimiento,
@@ -88,9 +86,18 @@ router.get("/xlsxtojson/", async (req, res) => {
   );
 });
 
+////////////// upload index Route  //////////////////
+
+router.get("/upload", function(req, res) {
+  const nameCarga = ["IM", "Incidentes", "Requerimientos"];
+  res.render("cargar", {
+    nameCarga   
+  });
+});
+
 ////////////// upload Route  //////////////////
 
-router.get("/upload", function(req, res) {});
+
 
 router.post("/upload", async function(req, res) {
   const sampleFile = req.files.file;
