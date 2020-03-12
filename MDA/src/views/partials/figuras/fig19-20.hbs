@@ -1,0 +1,100 @@
+<script>
+          //%%%%%%%%%%%%%%%% Figura 19 %%%%%%%%%%%%%%//        
+        var lab19=[],dat19=[]
+        {{#each Fig19}}
+            lab19.push('{{name}}')            
+            dat19.push({{count}})            
+        {{/each}}
+        
+        var Fig19Data = {
+            labels: lab19,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat19,
+                label: 'No. de Tickets por Municipio'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura19").getContext("2d");
+        var Fig19 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig19Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Falla OTROS - {{tit19}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+                  //%%%%%%%%%%%%%%%% Figura 20 %%%%%%%%%%%%%%//        
+        var lab20=[],dat20=[]
+        {{#each Fig20}}
+            lab20.push('{{name}}')            
+            dat20.push({{count}})            
+        {{/each}}
+        
+        var Fig20Data = {
+            labels: lab20,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat20,
+                label: 'No. de Tickets por Municipio'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura20").getContext("2d");
+        var Fig20 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig20Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Falla OTROS - {{tit20}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+    
+</script>

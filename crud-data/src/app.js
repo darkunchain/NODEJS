@@ -2,8 +2,8 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
 const app = express();
+
 
 // connection to db
 mongoose.connect('mongodb://localhost/crud-data')
@@ -12,6 +12,8 @@ mongoose.connect('mongodb://localhost/crud-data')
 
 // importing routes
 const indexRoutes = require('./routes/index');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // settings
 app.set('port', process.env.PORT || 3000);
@@ -27,3 +29,6 @@ app.use('/', indexRoutes);
 app.listen(app.get('port'), () => {
   console.log(`server on port ${app.get('port')}`);
 });
+
+
+

@@ -1,0 +1,166 @@
+
+    {
+        "departamento": "AMAZONAS",
+        "numMun": "2",
+        "capital": "Leticia"
+    },
+    {
+        "departamento": "ANTIOQUIA",
+        "numMun": "125",
+        "capital": "Medellín"
+    },
+    {
+        "departamento": "ARAUCA",
+        "numMun": "7",
+        "capital": "Arauca"
+    },
+    {
+        "departamento": "ATLÁNTICO",
+        "numMun": "23",
+        "capital": "Barranquilla"
+    },
+    {
+        "departamento": "BOGOTÁ",
+        "numMun": "1",
+        "capital": "Bogotá"
+    },
+    {
+        "departamento": "BOLIVAR",
+        "numMun": "45",
+        "capital": "Cartagena de Indias"
+    },
+    {
+        "departamento": "BOYACA",
+        "numMun": "123",
+        "capital": "Tunja"
+    },
+    {
+        "departamento": "CALDAS",
+        "numMun": "27",
+        "capital": "Manizales"
+    },
+    {
+        "departamento": "CAQUETA",
+        "numMun": "16",
+        "capital": "Florencia"
+    },
+    {
+        "departamento": "CASANARE",
+        "numMun": "19",
+        "capital": "Yopal"
+    },
+    {
+        "departamento": "CAUCA",
+        "numMun": "41",
+        "capital": "Popayán"
+    },
+    {
+        "departamento": "CESAR",
+        "numMun": "25",
+        "capital": "Valledupar"
+    },
+    {
+        "departamento": "CHOCO",
+        "numMun": "31",
+        "capital": "Quibdó"
+    },
+    {
+        "departamento": "CORDOBA",
+        "numMun": "30",
+        "capital": "Montería"
+    },
+    {
+        "departamento": "CUNDINAMARCA",
+        "numMun": "116",
+        "capital": "Bogotá"
+    },
+    {
+        "departamento": "GUAINIA",
+        "numMun": "1",
+        "capital": "Inírida"
+    },
+    {
+        "departamento": "GUAVIARE",
+        "numMun": "4",
+        "capital": "San José del Guaviare"
+    },
+    {
+        "departamento": "HUILA",
+        "numMun": "37",
+        "capital": "Neiva"
+    },
+    {
+        "departamento": "GUAJIRA",
+        "numMun": "15",
+        "capital": "Riohacha"
+    },
+    {
+        "departamento": "MAGDALENA",
+        "numMun": "30",
+        "capital": "Santa Marta"
+    },
+    {
+        "departamento": "META",
+        "numMun": "29",
+        "capital": "Villavicencio"
+    },
+    {
+        "departamento": "NARIÑO",
+        "numMun": "64",
+        "capital": "San Juan de Pasto"
+    },
+    {
+        "departamento": "NORTE DE SANTANDER",
+        "numMun": "40",
+        "capital": "San José de Cúcuta"
+    },
+    {
+        "departamento": "PUTUMAYO",
+        "numMun": "13",
+        "capital": "Mocoa"
+    },
+    {
+        "departamento": "QUINDIO",
+        "numMun": "12",
+        "capital": "Armenia"
+    },
+    {
+        "departamento": "RISARALDA",
+        "numMun": "14",
+        "capital": "Pereira"
+    },
+    {
+        "departamento": "SAN ANDRES",
+        "numMun": "2",
+        "capital": "San Andrés"
+    },
+    {
+        "departamento": "SANTANDER",
+        "numMun": "87",
+        "capital": "Bucaramanga"
+    },
+    {
+        "departamento": "SUCRE",
+        "numMun": "26",
+        "capital": "Sincelejo"
+    },
+    {
+        "departamento": "TOLIMA",
+        "numMun": "47",
+        "capital": "Ibagué"
+    },
+    {
+        "departamento": "VALLE",
+        "numMun": "42",
+        "capital": "Cali"
+    },
+    {
+        "departamento": "VAUPÉS",
+        "numMun": "3",
+        "capital": "Mitú"
+    },
+    {
+        "departamento": "VICHADA",
+        "numMun": "4",
+        "capital": "Puerto Carreño"
+    }

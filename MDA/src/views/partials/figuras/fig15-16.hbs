@@ -1,0 +1,99 @@
+<script>
+           //%%%%%%%%%%%%%%%% Figura 15 %%%%%%%%%%%%%%//        
+        var lab15=[],dat15=[]
+        {{#each Fig15}}
+            lab15.push('{{name}}')            
+            dat15.push({{count}})            
+        {{/each}}
+        
+        var Fig15Data = {
+            labels: lab15,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat15,
+                label: 'No. de Tickets por Municipio'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura15").getContext("2d");
+        var Fig15 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig15Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Falla TIGO - {{tit15}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+                  //%%%%%%%%%%%%%%%% Figura 16 %%%%%%%%%%%%%%//        
+        var lab16=[],dat16=[]
+        {{#each Fig16}}
+            lab16.push('{{name}}')            
+            dat16.push({{count}})            
+        {{/each}}
+        
+        var Fig16Data = {
+            labels: lab16,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat16,
+                label: 'No. de Tickets por Municipio'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura16").getContext("2d");
+        var Fig16 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig16Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Falla TIGO - {{tit16}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+</script>

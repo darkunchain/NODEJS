@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reportes Vulnerability Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/local.js"></script>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col s12 red lighten-2 center-align white-text ">
+            <h3> Reporteador McAfee Vulnerability Manager</h3>
+        </div>
+        <div class="input-field col s6">
+            <select id="seleccione" multiple>
+                <option value="" disabled selected>Seleccione el/los analisis</option>
+                <% for(var i=0; i < jobs.length; i++) {  %>
+                <option value="<%= jobs[i].JobID %>"><%= jobs[i].nombre_analisis %></option>
+                <% } %>
+            </select>
+            <label>Materialize Multiple Select</label>
+
+        </div>
+        <div class="right-align col s6">
+            <button id="generar" class="waves-effect waves-light btn-save btn btn-primary btn-sm">Generar
+                reporte</button>
+        </div>
+
+        <div><span>Analisis: </span><span id="jobs"><%= especifico.length %></span> </div>
+
+    </div>
+
+
+
+    <div class="container width=100%">
+
+        <div class="row width=100%">
+            <div class="col s12">
+
+                <table class="bordered responsive-table striped">
+                    <thead>
+                        <tr><strong>
+                            <th>Direccion IP</th>
+                            <th>Nombre de host</th>
+                            <th>Riesgo</th>
+                            <th>Risk</th>
+                            <th>CVE</th>
+                            <th>Nombre</th>
+                            <th>Descripcion de la vulnerabilidad</th>
+                            <th>Recomendacion</th>
+                            <th>Nombre del analisis</th>
+                            <th>JobID</th>
+                        </strong></tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < especifico.length; i++) { %>
+                        <tr>
+                            <td><%= especifico[i].Direccion_IP %></td>
+                            <td><%= especifico[i].Nombre_de_Host %></td>
+                            <td><%= especifico[i].Riesgo %></td>
+                            <td><%= especifico[i].Risk %></td>
+                            <td><%= especifico[i].CVE %></td>
+                            <td><%= especifico[i].Nombre %></td>
+                            <td><%= especifico[i].Descripcion_de_la_Vulnerabilidad %></td>
+                            <td><%= especifico[i].Recomendacion %></td>
+                            <td><%= especifico[i].Nombre_del_Analisis %></td>
+                            <td><%= especifico[i].JobID %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

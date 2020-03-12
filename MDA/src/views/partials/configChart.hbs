@@ -1,0 +1,485 @@
+<script>
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%% Funciones %%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%% Mostrar tooltips siempre %%%%%%%%%%%%%%%%%%%%%%%//
+  Chart.pluginService.register({
+    beforeRender: function (chart) {
+      if (chart.config.options.showAllTooltips) {
+        chart.pluginTooltips = [];
+        chart.config.data.datasets.forEach(function (dataset, i) {
+          chart.getDatasetMeta(i).data.forEach(function (sector, j) {
+            chart.pluginTooltips.push(new Chart.Tooltip({
+              _chart: chart.chart,
+              _chartInstance: chart,
+              _data: chart.data,
+              _options: chart.options.tooltips,
+              _active: [sector]
+            }, chart));
+          });
+        });        
+        chart.options.tooltips.enabled = false;
+      }
+    },
+    afterDraw: function (chart, easing) {
+      if (chart.config.options.showAllTooltips) {        
+        if (!chart.allTooltipsOnce) {
+          if (easing !== 1)
+            return;
+          chart.allTooltipsOnce = true;
+        }
+        chart.options.tooltips.enabled = true;
+        Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+          tooltip.initialize();
+          tooltip.update();
+          tooltip.pivot();
+          tooltip.transition(easing).draw();
+        });
+        chart.options.tooltips.enabled = false;
+      }
+    }
+  });
+
+//%%%%%%%%%%%%%%%%%%%%%%%% hallar porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
+  function percentage(arr) {
+    var sum = 0, sum1 = 0, perc = [], cum = [], p80 = []
+    for (var i = 0; i < arr.length; i++) {
+      sum = sum + arr[i]
+    }
+    for (var i = 0; i < arr.length; i++) {
+      perc.push(((arr[i] / sum) * 100))
+      sum1 = sum1 + perc[i]
+      cum.push(parseFloat(sum1))
+      p80.push(80)
+    }
+    dataperc = { "perc": perc, "cum": cum, "sum": sum, "p80": p80 }
+    return dataperc
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%% posicion del tooltip abajo %%%%%%%%%%%%%%%%%%%%%%%//
+    Chart.Tooltip.positioners.posicion = function(elements, eventPosition) {
+        
+        var tooltip = this;
+        if (!elements.length) {
+        return false;
+        }
+        var i, len;
+        var x = 0;
+        var y = 0;
+        var count = 0;
+        for (i = 0, len = elements.length; i < len; ++i) {
+        var el = elements[i];        
+        if (el && el.hasValue()) {
+            var pos = el.tooltipPosition();
+            x += pos.x;
+            if(elements[i]._datasetIndex == 1){
+              y = 320;
+            } else {
+              y += pos.y + 20;
+            }
+            ++count;            
+        }
+        }        
+        return {
+        x: Math.round(x / count),
+        y: Math.round(y / count)
+        };
+    }
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%% posicion del tooltip todas las graficas%%%%%%%%%%%%%%%%%%%%%%%//
+    Chart.Tooltip.positioners.todas = function(elements, eventPosition) {
+        
+        var tooltip = this;
+        if (!elements.length) {
+        return false;
+        }
+        var i, len;
+        var x = 0;
+        var y = 0;
+        var count = 0;
+        for (i = 0, len = elements.length; i < len; ++i) {
+        var el = elements[i];        
+        if (el && el.hasValue()) {
+            var pos = el.tooltipPosition();
+            x += pos.x;            
+            y += pos.y + 14;            
+            ++count;            
+        }
+        }        
+        return {
+        x: Math.round(x / count),
+        y: Math.round(y / count)
+        };
+    }
+
+
+
+
+  
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%% Variables %%%%%%%%%%%%%%%%%%%%%%%//
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%% hallar porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
+  var tooltips = {
+    enabled: true,
+    mode: 'nearest', //point, nearest, index, dataset, x, y
+    intersect: true,
+    titleAlign: 'center',
+    BodyAlign: 'center',
+    yAlign: 'bottom',
+    position: 'todas',
+    callbacks: {
+      label: function (tooltipItem, data) {
+        var nombres = data.labels
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });
+        var currentValue = dataset.data[tooltipItem.index];
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        nombre = nombres[tooltipItem.index]
+        return currentValue + " - " + percentage + "%";
+      }
+    }
+  }
+
+
+
+  //%%%%%%%%%%%%%%%%%%%%%%%% tooltips todas las graficas %%%%%%%%%%%%%%%%%%%%%%%//
+  var tooltipsValue = {
+    enabled: true,
+    mode: 'nearest', //point, nearest, index, dataset, x, y
+    intersect: true,
+    titleAlign: 'center',
+    BodyAlign: 'center',
+    yAlign: 'bottom',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    bodyFontColor: '#000000',
+    displayColors: false,
+    position: 'todas',
+    callbacks: {
+      title: function () { },
+      label: function (tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });
+        var currentValue = dataset.data[tooltipItem.index]
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        var xLabel = data.datasets[tooltipItem.datasetIndex].label;
+        var yLabel = tooltipItem.yLabel;
+        return [currentValue, percentage + "%"];
+      }
+    }
+
+  }
+
+
+  //%%%%%%%%%%%%%%%%%%%%%%%% tooltips segunda grafica sin porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
+  var tooltipsSinP = {
+    enabled: true,
+    mode: 'nearest', //point, nearest, index, dataset, x, y
+    intersect: true,
+    titleAlign: 'center',
+    BodyAlign: 'center',
+    yAlign: 'bottom',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    bodyFontColor: '#000000',
+    displayColors: false,
+    caretPadding: 10, //posicion de la flecha del tooltip
+    position: 'posicion',
+    callbacks: {
+      title: function () { },
+      label: function (tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });        
+        var currentValue = dataset.data[tooltipItem.index]
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        var xLabel = data.datasets[tooltipItem.datasetIndex].label;
+        var yLabel = tooltipItem.yLabel;
+        if (tooltipItem.datasetIndex === 0){ 
+        return [currentValue, percentage + "%"];
+        }else if (tooltipItem.datasetIndex === 1){          
+          return [currentValue];
+        }         
+      }
+    }
+  }
+
+
+   //%%%%%%%%%%%%%%%%%%%%%%%% tooltips primera grafica sin porcentaje %%%%%%%%%%%%%%%%%%%%%%%//
+  var tooltipsSinP1 = {
+    enabled: true,
+    mode: 'nearest', //point, nearest, index, dataset, x, y
+    intersect: true,
+    titleAlign: 'center',
+    BodyAlign: 'center',
+    yAlign: 'bottom',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    bodyFontColor: '#000000',
+    displayColors: false,
+    caretPadding: 10, //posicion de la flecha del tooltip
+    position: 'posicion',
+    callbacks: {
+      title: function () { },
+      label: function (tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });        
+        var currentValue = dataset.data[tooltipItem.index]
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        var xLabel = data.datasets[tooltipItem.datasetIndex].label;
+        var yLabel = tooltipItem.yLabel;                  
+        return [currentValue];                 
+      }
+    }
+  }
+
+
+ //%%%%%%%%%%%%%%%%%%%%%%%% tooltips solo la primera grafica %%%%%%%%%%%%%%%%%%%%%%%//
+  var tooltipsSin = {
+    enabled: true,
+    mode: 'nearest', //point, nearest, index, dataset, x, y
+    intersect: true,
+    titleAlign: 'center',
+    BodyAlign: 'center',
+    yAlign: 'bottom',
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    bodyFontColor: '#000000',
+    displayColors: false,
+    position: 'todas',
+    callbacks: {
+      title: function () { },
+      label: function (tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });
+        var currentValue = dataset.data[tooltipItem.index]
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        var xLabel = data.datasets[tooltipItem.datasetIndex].label;
+        var yLabel = tooltipItem.yLabel;
+        if (tooltipItem.datasetIndex === 0) return [currentValue, percentage + "%"];
+        else if (tooltipItem.datasetIndex === 1) return [];
+      }
+    }
+  }
+
+ //%%%%%%%%%%%%%%%%%%%%%%%% opciones pie %%%%%%%%%%%%%%%%%%%%%%%//
+  var optionsPie = {
+    tooltips: tooltips,
+    showAllTooltips: true,
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        fontColor: "#333",
+        fontSize: 16
+      }
+    },
+    animation: {
+      animateRotate: true,
+      animateScale: true
+    },
+    rotation: -0.7 * Math.PI,
+    responsive: true,
+    maintainAspectRatio: true
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%% opciones bar %%%%%%%%%%%%%%%%%%%%%%%//
+  var optionsBar = {
+    tooltips: tooltips,
+    showAllTooltips: true,
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        fontColor: "#333",
+        fontSize: 16
+      }
+    },
+    responsive: false,
+    maintainAspectRatio: true
+  }
+//%%%%%%%%%%%%%%%%%%%%%%%% departamentos %%%%%%%%%%%%%%%%%%%%%%%//
+var departamentos=[
+    {
+        "departamento": "AMAZONAS",
+        "numMun": 2,
+        "capital": "Leticia"
+    },
+    {
+        "departamento": "ANTIOQUIA",
+        "numMun": 125,
+        "capital": "Medellín"
+    },
+    {
+        "departamento": "ARAUCA",
+        "numMun": 7,
+        "capital": "Arauca"
+    },
+    {
+        "departamento": "ATLÁNTICO",
+        "numMun": 23,
+        "capital": "Barranquilla"
+    },
+    {
+        "departamento": "BOGOTÁ",
+        "numMun": 1,
+        "capital": "Bogotá"
+    },
+    {
+        "departamento": "BOLIVAR",
+        "numMun": 45,
+        "capital": "Cartagena de Indias"
+    },
+    {
+        "departamento": "BOYACA",
+        "numMun": 123,
+        "capital": "Tunja"
+    },
+    {
+        "departamento": "CALDAS",
+        "numMun": 27,
+        "capital": "Manizales"
+    },
+    {
+        "departamento": "CAQUETA",
+        "numMun": 16,
+        "capital": "Florencia"
+    },
+    {
+        "departamento": "CASANARE",
+        "numMun": 19,
+        "capital": "Yopal"
+    },
+    {
+        "departamento": "CAUCA",
+        "numMun": 41,
+        "capital": "Popayán"
+    },
+    {
+        "departamento": "CESAR",
+        "numMun": 25,
+        "capital": "Valledupar"
+    },
+    {
+        "departamento": "CHOCO",
+        "numMun": 31,
+        "capital": "Quibdó"
+    },
+    {
+        "departamento": "CORDOBA",
+        "numMun": 30,
+        "capital": "Montería"
+    },
+    {
+        "departamento": "CUNDINAMARCA",
+        "numMun": 116,
+        "capital": "Bogotá"
+    },
+    {
+        "departamento": "GUAINIA",
+        "numMun": 1,
+        "capital": "Inírida"
+    },
+    {
+        "departamento": "GUAVIARE",
+        "numMun": 4,
+        "capital": "San José del Guaviare"
+    },
+    {
+        "departamento": "HUILA",
+        "numMun": 37,
+        "capital": "Neiva"
+    },
+    {
+        "departamento": "GUAJIRA",
+        "numMun": 15,
+        "capital": "Riohacha"
+    },
+    {
+        "departamento": "MAGDALENA",
+        "numMun": 30,
+        "capital": "Santa Marta"
+    },
+    {
+        "departamento": "META",
+        "numMun": 29,
+        "capital": "Villavicencio"
+    },
+    {
+        "departamento": "NARIÑO",
+        "numMun": 64,
+        "capital": "San Juan de Pasto"
+    },
+    {
+        "departamento": "NORTE DE SANTANDER",
+        "numMun": 40,
+        "capital": "San José de Cúcuta"
+    },
+    {
+        "departamento": "PUTUMAYO",
+        "numMun": 13,
+        "capital": "Mocoa"
+    },
+    {
+        "departamento": "QUINDIO",
+        "numMun": 12,
+        "capital": "Armenia"
+    },
+    {
+        "departamento": "RISARALDA",
+        "numMun": 14,
+        "capital": "Pereira"
+    },
+    {
+        "departamento": "SAN ANDRES",
+        "numMun": 2,
+        "capital": "San Andrés"
+    },
+    {
+        "departamento": "SANTANDER",
+        "numMun": 87,
+        "capital": "Bucaramanga"
+    },
+    {
+        "departamento": "SUCRE",
+        "numMun": 26,
+        "capital": "Sincelejo"
+    },
+    {
+        "departamento": "TOLIMA",
+        "numMun": 47,
+        "capital": "Ibagué"
+    },
+    {
+        "departamento": "VALLE",
+        "numMun": 42,
+        "capital": "Cali"
+    },
+    {
+        "departamento": "VAUPÉS",
+        "numMun": 3,
+        "capital": "Mitú"
+    },
+    {
+        "departamento": "VICHADA",
+        "numMun": 4,
+        "capital": "Puerto Carreño"
+    }
+]
+
+
+</script>

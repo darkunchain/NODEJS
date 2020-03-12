@@ -1,0 +1,100 @@
+<script>
+          //%%%%%%%%%%%%%%%% Figura 17 %%%%%%%%%%%%%%//        
+        var lab17=[],dat17=[]
+        {{#each Fig17}}
+            lab17.push('{{name}}')            
+            dat17.push({{count}})            
+        {{/each}}
+        
+        var Fig17Data = {
+            labels: lab17,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat17,
+                label: 'No. de Tickets por Municipio'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura17").getContext("2d");
+        var Fig17 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig17Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Falla RNEC - {{tit17}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+                  //%%%%%%%%%%%%%%%% Figura 18 %%%%%%%%%%%%%%//        
+        var lab18=[],dat18=[]
+        {{#each Fig18}}
+            lab18.push('{{name}}')            
+            dat18.push({{count}})            
+        {{/each}}
+        
+        var Fig18Data = {
+            labels: lab18,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat18,
+                label: 'No. de Tickets por Municipio'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura18").getContext("2d");
+        var Fig18 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig18Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Falla RNEC - {{tit18}}",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+</script>

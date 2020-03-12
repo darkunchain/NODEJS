@@ -10,6 +10,7 @@
   "author": "Luis Fernando Prieto",
   "license": "ISC",
   "dependencies": {
+    "chartjs-node-canvas": "^2.0.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1"

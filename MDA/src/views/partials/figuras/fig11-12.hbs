@@ -1,0 +1,126 @@
+<script>
+       //%%%%%%%%%%%%%%%% Figura 11 %%%%%%%%%%%%%%//
+        var data = {            
+            labels: ['Fallas atribuibles a TIGO', 'Fallas atribuibles a RNEC', 'Fallas atribuibles a Otros Factores'],
+            datasets: [
+                {
+                    fill: true,
+                    backgroundColor: ["#00AEED","#A3A3A3","#1E3662"],
+                    data: [{{Figura11}}],
+                    borderColor:	['white', 'white'],
+                    borderWidth: [2,2]
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura11").getContext("2d");        
+        var Fig11 = new Chart(ctx, {
+        animationEnabled: true,
+        type: 'pie',
+        data: data,
+        options: {
+            title: {
+            text: "Imputabilidad de Fallas",
+            display: true,
+            position: 'top',
+            fontSize: 18,
+            fontColor: "#111"         
+          },
+          tooltips: tooltips,
+          showAllTooltips: true,
+          optionsPie 
+          }       
+        });
+
+
+
+        //%%%%%%%%%%%%%%%% Figura 12 %%%%%%%%%%%%%%//        
+        var lab12=[],dat12=[], lab12n=[]
+        {{#each Fig12}}
+            lab12.push('{{name}}')            
+            dat12.push({{count}})            
+        {{/each}}
+        var perc12=percentage(dat12)        
+        dat12perc=[perc12.perc]
+        dat12cum=perc12.cum
+        dat12p80=perc12.p80
+        lab12n=['a','b','c','d','e','f','g','h','i','j']
+        var labt=lab12.length
+        if(labt<10) {
+            lab12n=lab12n.slice(0, labt)
+        }
+        console.log()
+        
+        
+        var Fig12Data = {
+            labels: lab12n,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat12,
+                label: 'Fallas'
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#00AEED",                
+                data: dat12cum,
+                fill: false,
+                label: 'Pareto'                
+                },
+                {                
+                type: "line",
+                yAxisID: 'B',
+                borderColor: "#A3A3A3",                
+                data: dat12p80,
+                fill: false,
+                label: '80%'                
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura12").getContext("2d");
+        var Fig12 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig12Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        max: perc12.sum,
+                        min: 0,                                         
+                        }
+                    }, {
+                        id: 'B',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                        max: 100,
+                        min: 0,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        } 
+                        }
+                    }]
+                },
+                title: {
+                    text: "Top 10 - Fallas Atribuibles a TIGO",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSin,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+                footer: {
+                    display: true,
+                    text: 'data from xy'
+                }
+            }
+        });
+    
+</script>

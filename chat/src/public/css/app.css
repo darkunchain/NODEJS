@@ -1,0 +1,52 @@
+body {
+    background: rgba(182, 191, 133, 1);
+    background: -moz-linear-gradient(left, rgba(182, 191, 133, 1) 0%, rgba(182, 191, 133, 1) 62%, rgba(117, 137, 12, 1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(182, 191, 133, 1)), color-stop(62%, rgba(182, 191, 133, 1)), color-stop(100%, rgba(117, 137, 12, 1)));
+    background: -webkit-linear-gradient(left, rgba(182, 191, 133, 1) 0%, rgba(182, 191, 133, 1) 62%, rgba(117, 137, 12, 1) 100%);
+    background: -o-linear-gradient(left, rgba(182, 191, 133, 1) 0%, rgba(182, 191, 133, 1) 62%, rgba(117, 137, 12, 1) 100%);
+    background: -ms-linear-gradient(left, rgba(182, 191, 133, 1) 0%, rgba(182, 191, 133, 1) 62%, rgba(117, 137, 12, 1) 100%);
+    background: linear-gradient(to right, rgba(182, 191, 133, 1) 0%, rgba(182, 191, 133, 1) 62%, rgba(117, 137, 12, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b6bf85', endColorstr='#75890c', GradientType=1);
+    color: #ffffff;
+    font-family: 'Josefin Sans', sans-serif;
+}
+#chat-container {
+    max-width: 500px;
+    margin: 30px auto;
+    border: 1px solid #dddddd;
+    box-shadow: 1px 3px 5px rgba(117, 137, 12, 0.5);
+}
+#chat-window {
+    padding: 14px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid #d7d7da;
+    color: #393956;
+}
+#output p{
+color: #393956;
+padding: 14px 0;
+margin: 0 20px;
+}
+#actions p { 
+    
+    border-bottom: 1px solid #12632a;
+    color: #393956;
+    font-size: 10px;    
+}
+input {
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 1;
+    background: #e4e9c8;
+    display: block;
+    width: 100%;
+}
+button {
+    background: #12632a;
+    color: white;
+    font-size: 14px;
+    border: 0;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 0 0 5px 0;
+}

@@ -1,0 +1,99 @@
+<script>
+        //%%%%%%%%%%%%%%%% Figura 9 %%%%%%%%%%%%%%//        
+        var lab9IM=[],dat9IM=[],deps=[]
+        {{#each Fig9IM}}
+            lab9IM.push('{{name}}')            
+            dat9IM.push({{count}})            
+        {{/each}}
+        
+        var Fig9Data = {
+            labels: lab9IM,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat9IM,
+                label: 'Tickets por tipo de sede'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura9").getContext("2d");
+        var Fig9 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig9Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Tickets por tipo de sedes",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+
+
+                //%%%%%%%%%%%%%%%% Figura 10 %%%%%%%%%%%%%%//        
+        var lab10IM=[],dat10IM=[],deps=[]
+        {{#each Fig10IM}}
+            lab10IM.push('{{name}}')            
+            dat10IM.push({{count}})            
+        {{/each}}
+        
+        var Fig10Data = {
+            labels: lab10IM,
+            datasets: [
+                {
+                yAxisID: 'A',
+                backgroundColor: "#1E3662",
+                data: dat10IM,
+                label: 'Tickets por tipo de sede'
+                }
+            ]
+        };
+        var ctx = document.getElementById("Figura10").getContext("2d");
+        var Fig10 = new Chart(ctx, {
+            animationEnabled: true,
+            type: 'bar',
+            data: Fig10Data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'A',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                        //max: perc6.sum,
+                        min: 0                        
+                        }
+                    }]
+                },
+                title: {
+                    text: "Tickets por tipo de sedes (Sin Municipales)",
+                    display: true,
+                    position: 'top',
+                    fontSize: 18,
+                    fontColor: "#111"
+                },               
+                tooltips: tooltipsSinP,
+                showAllTooltips: true,
+                barValueSpacing: 20,
+            }
+        });
+    
+</script>

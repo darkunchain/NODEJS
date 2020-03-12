@@ -1,13 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const Coord = require('../model/coord');
+const convertCSVToArray  = require('convert-csv-to-array');
 
 router.get('/', async (req, res) => {
   const coords = await Coord.find();
-  res.render('index', {
-    coords
+  
+  var coordsx = coords.map(function (item) {
+    return item.x;
   });
+  var coordsy = coords.map(function (item) {       
+    return item.y;
+  }); 
+
+  
+
+  res.render('index', {coords, coordsx, coordsy}
+  );
 });
+
+//console.log(coords);
+
 
 router.post('/add', async (req, res, next) => {
   const coord = new Coord(req.body);

@@ -1,0 +1,107 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'edt3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{216.70262362bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.562)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{edt3.pdf}}%
+    \put(0.44549994,0.5354891){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{SISTEMA DE}\end{tabular}}}}%
+    \put(0.42749994,0.5234891){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ESTACIONAMIENTO}\end{tabular}}}}%
+    \put(0.41949995,0.51148911){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{VERTICAL ROTATORIO}\end{tabular}}}}%
+    \put(0.41199994,0.49948911){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{AUTOMATIZADO PARA EL}\end{tabular}}}}%
+    \put(0.41399995,0.48748911){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{HOTEL BLACK TOWER –}\end{tabular}}}}%
+    \put(0.45249994,0.47548911){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{BOGOTÁ.}\end{tabular}}}}%
+    \put(0.021,0.41898912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ DIAGNÓSTICO}\end{tabular}}}}%
+    \put(0.03949999,0.38098912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Requisitos}\end{tabular}}}}%
+    \put(0.03949999,0.32848913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Factibilidad}\end{tabular}}}}%
+    \put(0.14199998,0.41898912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ DISEÑO}\end{tabular}}}}%
+    \put(0.15799998,0.38098912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Obra civil}\end{tabular}}}}%
+    \put(0.16049998,0.32848913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema eléctrico y de}\end{tabular}}}}%
+    \put(0.17949998,0.31648913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{puesta a tierra}\end{tabular}}}}%
+    \put(0.15899998,0.26248914){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema de carrusel}\end{tabular}}}}%
+    \put(0.15799998,0.20998915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Automatización y control}\end{tabular}}}}%
+    \put(0.15799998,0.15748915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistemas de apoyo}\end{tabular}}}}%
+    \put(0.31899996,0.41898912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ ADQUISICIONES}\end{tabular}}}}%
+    \put(0.33799996,0.38098912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Obra Civil}\end{tabular}}}}%
+    \put(0.33949996,0.32848913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema eléctrico y}\end{tabular}}}}%
+    \put(0.35099996,0.31648913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{puesta a tierra}\end{tabular}}}}%
+    \put(0.33849996,0.26248914){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema de carrusel}\end{tabular}}}}%
+    \put(0.33749996,0.20998915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Automatización y control}\end{tabular}}}}%
+    \put(0.33749996,0.15748915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistemas de apoyo}\end{tabular}}}}%
+    \put(0.33949996,0.10498916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Contratos documentos y}\end{tabular}}}}%
+    \put(0.37999995,0.09298916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{estudios}\end{tabular}}}}%
+    \put(0.33999995,0.03898917){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Contratos equipo de}\end{tabular}}}}%
+    \put(0.37399995,0.02698917){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{trabajo}\end{tabular}}}}%
+    \put(0.49949994,0.41898912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ CONSTRUCCION}\end{tabular}}}}%
+    \put(0.51749993,0.38098912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Obra Civil}\end{tabular}}}}%
+    \put(0.51899993,0.32848913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema eléctrico y}\end{tabular}}}}%
+    \put(0.53049993,0.31648913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{puesta a tierra}\end{tabular}}}}%
+    \put(0.51799993,0.26248914){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema de carrusel}\end{tabular}}}}%
+    \put(0.51699993,0.20998915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Automatización y control}\end{tabular}}}}%
+    \put(0.51699993,0.15748915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistemas de apoyo}\end{tabular}}}}%
+    \put(0.67549992,0.41898912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ PUESTA EN MARCHA}\end{tabular}}}}%
+    \put(0.6969999,0.38098912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Obra Civil}\end{tabular}}}}%
+    \put(0.6984999,0.32848913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema eléctrico y}\end{tabular}}}}%
+    \put(0.70999989,0.31648913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{puesta a tierra}\end{tabular}}}}%
+    \put(0.69749992,0.26248914){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistema de carrusel}\end{tabular}}}}%
+    \put(0.69649989,0.20998915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Automatización y control}\end{tabular}}}}%
+    \put(0.69649989,0.15748915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Sistemas de apoyo}\end{tabular}}}}%
+    \put(0.85799987,0.41898912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{ GERENCIA DE}\end{tabular}}}}%
+    \put(0.86599986,0.40698912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{PROYECTO}\end{tabular}}}}%
+    \put(0.87549989,0.36748912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Inicio}\end{tabular}}}}%
+    \put(0.87599991,0.31498913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Planeación}\end{tabular}}}}%
+    \put(0.87599991,0.26248914){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Ejecución}\end{tabular}}}}%
+    \put(0.87749991,0.20998915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Monitoreo y control}\end{tabular}}}}%
+    \put(0.87649987,0.15748915){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Cierre}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{edt3.pdf}}%
+  \end{picture}%
+\endgroup%
