@@ -15,7 +15,7 @@
     "chart.js": "^2.9.3",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6",
+    "express-fileupload": "^1.1.9",
     "express-handlebars": "^3.1.0",
     "handlebars": "^4.5.0",
     "moment": "^2.24.0",
