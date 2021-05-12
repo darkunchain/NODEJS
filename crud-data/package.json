@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "convert-csv-to-array": "^1.0.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
