@@ -6,7 +6,7 @@ const app = express();
 
 
 // connection to db
-mongoose.connect('mongodb://localhost/crud-data')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/crud-data')
   .then(db => console.log('db connected'))
   .catch(err => console.log(err));
 
