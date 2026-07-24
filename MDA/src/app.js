@@ -1,24 +1,18 @@
 // Este es mi servidor
 const path = require("path");
 const express = require("express");
-var exphbs  = require('express-handlebars');
+const { engine } = require("express-handlebars");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const xlsxtojson = require("xlsx-to-json");
-const xlstojson = require("xls-to-json");
 const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
-var Handlebars = require('handlebars');
 
 
 const app = express();
 
 // connection to db
 mongoose
-  .connect("mongodb://localhost/MDA", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/MDA")
   .then(db => console.log("Conectado a la base de datos MongoDB"))
   .catch(err => console.log(err));
 
@@ -29,18 +23,19 @@ const jsonRoutes = require("./routes/jsonRoutes");
 // settings
 app.set("port", process.env.PORT || 8090);
 app.set("views", path.join(__dirname, "views"));
-app.engine('hbs', exphbs({
+app.engine('hbs', engine({
   defaultLayout: 'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: {
+    inc(value) {
+      return Number.parseInt(value, 10) + 1;
+    }
+  }
 }));
 app.set('view engine', '.hbs');
 app.use(fileUpload());
-Handlebars.registerHelper("inc", function(value, options)
-{
-    return parseInt(value) + 1;
-});
 
 
 // middlewares

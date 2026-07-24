@@ -33,13 +33,13 @@ router.get('/edit/:id', async (req, res, next) => {
 
 router.post('/edit/:id', async (req, res, next) => {
   const { id } = req.params;
-  await Task.update({_id: id}, req.body);
+  await Task.updateOne({_id: id}, req.body);
   res.redirect('/');
 });
 
 router.get('/delete/:id', async (req, res, next) => {
   let { id } = req.params;
-  await Task.remove({_id: id});
+  await Task.deleteOne({_id: id});
   res.redirect('/');
 });
 

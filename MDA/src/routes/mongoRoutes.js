@@ -45,41 +45,26 @@ router.get("/usar/:id/:categoria", async (req, res) => {
 
 router.get("/seleccionar", async (req, res) => {
 	seleccion.length = 0
-	await IMNuevo.find({ status: true }, function (err, Doc) {
-		if (err) {
-			res.json(err);
-		} else if (Doc.length != 1) {
-			console.log('debe seleccionar solo un archivo')			
-		} else {
-			seleccion[0] = Doc[0]._id			 		
-		}
-	})
+	const documentosIM = await IMNuevo.find({ status: true });
+	if (documentosIM.length === 1) {
+		seleccion[0] = documentosIM[0]._id;
+	}
 
 	if(seleccion.length != 1){
 		console.log('debe seleccionar solo un archivo')
 	}else{
-		await IncidenteNuevo.find({ status: true }, function (err, Doc) {
-			if (err) {
-				res.json(err);
-			} else if (Doc.length != 1) {
-				console.log('debe seleccionar solo un archivo')	
-			} else {
-				seleccion[1] = Doc[0]._id			
-			}
-		})
+		const documentosIncidente = await IncidenteNuevo.find({ status: true });
+		if (documentosIncidente.length === 1) {
+			seleccion[1] = documentosIncidente[0]._id;
+		}
 		if(seleccion.length != 2){
 			console.log('debe seleccionar solo un archivo')
 
 		}else{
-			await RequerimientoNuevo.find({ status: true }, function (err, Doc) {
-				if (err) {
-					res.json(err);
-				} else if (Doc.length != 1) {
-					console.log('debe seleccionar solo un archivo')			
-				} else {
-					seleccion[2] = Doc[0]._id							
-				}
-			})
+			const documentosRequerimiento = await RequerimientoNuevo.find({ status: true });
+			if (documentosRequerimiento.length === 1) {
+				seleccion[2] = documentosRequerimiento[0]._id;
+			}
 		}
 	}	
 	console.log('seleccion.lenght: ', seleccion.length)	

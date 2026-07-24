@@ -11,42 +11,40 @@ const queryjobs = 'SELECT dbo.Jobs.JobID,ScanConfigurationsSnapshot.Configuratio
 var resumen = {};
 var especifico = {};
 var jobs = {};
-router.get('/', (req, res) => {
-    var request = new mssql.Request();
-    request.query(querysummary, function (err, result) {
-        if (err) console.log(err);        
-        resumen = result.recordset;                            
-    });
-    request.query(queryespecifico, function (err, result) {
-        if (err) console.log(err); 
-        especifico = result.recordset;
-    });
-    request.query(queryjobs, function (err, result) {
-        if (err) console.log(err); 
-        jobs = result.recordset;
-    });
-    res.render('index',{resumen,especifico,jobs})
-    
+router.get('/', async (req, res, next) => {
+    try {
+        const [summaryResult, specificResult, jobsResult] = await Promise.all([
+            mssql.query(querysummary),
+            mssql.query(queryespecifico),
+            mssql.query(queryjobs)
+        ]);
+        resumen = summaryResult.recordset;
+        especifico = specificResult.recordset;
+        jobs = jobsResult.recordset;
+        res.render('index',{resumen,especifico,jobs});
+    } catch (error) {
+        next(error);
+    }
 });
 
 
 
-router.get('/1', (req, res) => {
-    var request = new mssql.Request();
-    request.query(querysummary, function (err, result) {
-        if (err) console.log(err);
-        resumen = result.recordset;
-        res.send(resumen)
-    });
+router.get('/1', async (req, res, next) => {
+    try {
+        const result = await mssql.query(querysummary);
+        res.send(result.recordset);
+    } catch (error) {
+        next(error);
+    }
 });
 
-router.get('/2', (req, res) => {
-    var request = new mssql.Request();
-    request.query(queryespecifico, function (err, result) {
-        if (err) console.log(err);
-        especifico = result.recordset;
-        res.send(especifico)
-    });
+router.get('/2', async (req, res, next) => {
+    try {
+        const result = await mssql.query(queryespecifico);
+        res.send(result.recordset);
+    } catch (error) {
+        next(error);
+    }
 });
     
 

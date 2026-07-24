@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connection to db
-mongoose.connect('mongodb://localhost/crud-mongo', { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/crud-mongo')
   .then(db => console.log('db connected'))
   .catch(err => console.log(err));
 

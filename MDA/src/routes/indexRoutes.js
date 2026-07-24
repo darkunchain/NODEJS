@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const xlsxtojson = require("xlsx-to-json");
-const xlstojson = require("xls-to-json");
+const readXlsxFile = require("read-excel-file/node");
 const IMNuevo = require("../models/IMModel");
 const IncidenteNuevo = require("../models/IncidenteModel");
 const RequerimientoNuevo = require("../models/RequerimientoModel");
@@ -27,7 +26,7 @@ router.get("/", async (req, res) => {
 router.post("/", (req, res) => {});
 
 ////////////// xlsxtojson Route  //////////////////
-router.get("/xlsxtojson/", async (req, res) => {
+router.get("/xlsxtojson/", async (req, res, next) => {
   const { idCarga, fileName, file } = req.query;
   if (idCarga == 1) {
     var sheet = "Reporte IM";
@@ -36,54 +35,31 @@ router.get("/xlsxtojson/", async (req, res) => {
   } else {
     sheet = "Modificado";
   }
-  xlsxtojson(
-    {
-      input: "./src/archivos/" + file,
-      output: "./src/archivos/" + file + ".json",
-      sheet: sheet,
-      LowerCaseHeaders: true
-    },
-    async (err, result) => {
-      console.time("leerArchivo: ");
-      if (err) {
-        res.json(err);
-      } else {
-        var categoria = "";
-        if (idCarga == 1) {
-          console.log("idCarga 1");
-          categoria = "IM";
-          const IMNewFile = new IMNuevo({
-            nombre: fileName,
-            contenido: result,
-            categoria
-          });
-          await IMNewFile.save();
-          console.timeEnd("leerArchivo: ");
-        } else if (idCarga == 2) {
-          console.log("idCarga 2");
-          categoria = "Incidentes";
-          const IncidenteNewFile = new IncidenteNuevo({
-            nombre: fileName,
-            contenido: result,
-            categoria
-          });
-          await IncidenteNewFile.save();
-          console.timeEnd("leerArchivo: ");
-        } else {
-          console.log("idCarga 3");
-          categoria = "Requerimientos";
-          const RequerimientoNewFile = new RequerimientoNuevo({
-            nombre: fileName,
-            contenido: result,
-            categoria
-          });
-          await RequerimientoNewFile.save();
-          console.timeEnd("leerArchivo: ");
-        }
-        res.redirect("/");
-      }
-    }
-  );
+  try {
+    const rows = await readXlsxFile("./src/archivos/" + file, { sheet });
+    const headers = rows[0]
+      .map(value => String(value || "").toLowerCase());
+    const result = rows.slice(1).map(row => {
+      const record = {};
+      headers.forEach((header, index) => {
+        record[header] = row[index];
+      });
+      return record;
+    });
+
+    const categoria =
+      idCarga == 1 ? "IM" : idCarga == 2 ? "Incidentes" : "Requerimientos";
+    const Model =
+      idCarga == 1
+        ? IMNuevo
+        : idCarga == 2
+          ? IncidenteNuevo
+          : RequerimientoNuevo;
+    await new Model({ nombre: fileName, contenido: result, categoria }).save();
+    res.redirect("/");
+  } catch (error) {
+    next(error);
+  }
 });
 
 ////////////// upload index Route  //////////////////
